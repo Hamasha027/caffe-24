@@ -1,6 +1,6 @@
 'use client';
 import Link from "next/link";
-import { Search, Pizza, UtensilsCrossed, Coffee, CupSoda, Layers, Moon, Sun, Facebook, X, Phone, MapPin, Clock, IceCream, Soup, Droplets, Candy, Flame, Share2 } from "lucide-react";
+import { Search, UtensilsCrossed, Coffee, CupSoda, Layers, Moon, Sun, Facebook, X, Phone, MapPin, Clock, IceCream, Soup, Droplets, Candy, Flame, Wine } from "lucide-react";
 import { useMemo, useState, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
@@ -69,7 +69,7 @@ export default function HomePage() {
     () => [
       { id: "all", name: t("categories.all"), icon: Layers },
       { id: "icecoffee", name: t("categories.icecoffee"), icon: IceCream },
-      { id: "mexican", name: t("categories.mexican"), icon: UtensilsCrossed },
+      { id: "mexican", name: t("categories.mexican"), icon: Wine },
       { id: "freshdrinks", name: t("categories.freshdrinks"), icon: CupSoda },
       { id: "milkshake", name: t("categories.milkshake"), icon: Soup },
       { id: "syrup", name: t("categories.syrup"), icon: Droplets },

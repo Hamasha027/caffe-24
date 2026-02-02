@@ -100,7 +100,6 @@ export const translations: Record<AppLang, Record<string, string>> = {
 
     "admin.logout": "Logout",
     "admin.dashboardTitle": "Admin Dashboard",
-    // "admin.cafeMenu": "Café Menu",
 
     "contact.title": "Contact Us",
     "contact.phone1": "07510278487",
@@ -136,11 +135,11 @@ export const translations: Record<AppLang, Record<string, string>> = {
     "home.goAdmin": "چوون بۆ داشبۆردی ئەدمین",
 
     "categories.all": "هەموو",
-    "categories.icecoffee": "قاوەی سارد",
+    "categories.icecoffee": "ئایس کؤفی",
     "categories.mexican": "مەکسیکی",
-    "categories.freshdrinks": "خواردنەوەی تازە",
+    "categories.freshdrinks": " فرێشەکان",
     "categories.milkshake": "میلک شەیک",
-    "categories.syrup": "شەربەت",
+    "categories.syrup": "سیرەب",
     "categories.sweets": "شیرینەمەنی",
     "categories.hotdrinks": "خواردنەوەی گەرم",
     "categories.coffee": "قاوە",

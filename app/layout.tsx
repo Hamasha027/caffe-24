@@ -50,6 +50,7 @@ export default function RootLayout({
             `,
           }}
         />
+        <link rel="icon" type="image/png" href="/image/2.png" />
       </head>
       <body className={`${sirwan.variable} font-sirwan antialiased`}>
         <AppProviders>{children}</AppProviders>

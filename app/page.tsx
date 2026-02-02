@@ -1,9 +1,8 @@
 'use client';
 import Link from "next/link";
-import { Search, UtensilsCrossed, Coffee, CupSoda, Layers, Moon, Sun, Facebook, X, Phone, MapPin, Clock, IceCream, Soup, Droplets, Candy, Flame, Wine } from "lucide-react";
+import { Search, Coffee, CupSoda, Layers, Moon, Sun, Facebook, X, Phone, MapPin, Clock, IceCream, Droplets, Candy, Flame, Wine } from "lucide-react";
 import { useMemo, useState, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogClose, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -74,13 +73,13 @@ export default function HomePage() {
   const categories = useMemo(
     () => [
       { id: "all", name: t("categories.all"), icon: Layers },
-      { id: "ice coffee", name: t("categories.icecoffee"), icon: IceCream },
+      { id: "icecoffee", name: t("categories.icecoffee"), icon: IceCream },
       { id: "mexican", name: t("categories.mexican"), icon: Wine },
-      { id: "fresh drinks", name: t("categories.freshdrinks"), icon: CupSoda },
-      { id: "milk shake", name: t("categories.milkshake"), icon: Soup },
+      { id: "freshdrinks", name: t("categories.freshdrinks"), icon: CupSoda },
+      { id: "milkshake", name: t("categories.milkshake"), icon: IceCream },
       { id: "syrup", name: t("categories.syrup"), icon: Droplets },
       { id: "sweets", name: t("categories.sweets"), icon: Candy },
-      { id: "hot drinks", name: t("categories.hotdrinks"), icon: Flame },
+      { id: "hotdrinks", name: t("categories.hotdrinks"), icon: Flame },
       { id: "coffee", name: t("categories.coffee"), icon: Coffee },
     ],
     [t]
@@ -90,7 +89,7 @@ export default function HomePage() {
     const q = searchTerm.trim().toLowerCase();
 
     return items.filter((item) => {
-      const category = item.category || "drinks";
+      const category = item.category || "coffee";
       const matchCategory = selectedCategory === "all" || category === selectedCategory;
       if (!matchCategory) return false;
 
@@ -110,6 +109,7 @@ export default function HomePage() {
     const formatted = category
       .replace(/icecoffee/gi, 'Ice Coffee')
       .replace(/hotdrinks/gi, 'Hot Drinks')
+      .replace(/freshdrinks/gi, 'Fresh Drinks')
       .replace(/milkshake/gi, 'Milk Shake');
     
     // Capitalize first letter if not already formatted
@@ -120,7 +120,7 @@ export default function HomePage() {
     const colors: Record<string, { light: string; dark: string }> = {
       icecoffee: { light: "bg-cyan-100 text-cyan-800", dark: "dark:bg-cyan-900/40 dark:text-cyan-100" },
       mexican: { light: "bg-yellow-100 text-yellow-800", dark: "dark:bg-yellow-900/40 dark:text-yellow-100" },
-      "fresh drinks": { light: "bg-blue-100 text-blue-800", dark: "dark:bg-blue-900/40 dark:text-blue-100" },
+      freshdrinks: { light: "bg-blue-100 text-blue-800", dark: "dark:bg-blue-900/40 dark:text-blue-100" },
       milkshake: { light: "bg-pink-100 text-pink-800", dark: "dark:bg-pink-900/40 dark:text-pink-100" },
       syrup: { light: "bg-purple-100 text-purple-800", dark: "dark:bg-purple-900/40 dark:text-purple-100" },
       sweets: { light: "bg-rose-100 text-rose-800", dark: "dark:bg-rose-900/40 dark:text-rose-100" },
@@ -166,12 +166,12 @@ export default function HomePage() {
         {!loading && items.length > 0 ? (
           <>
             {/* Header Section */}
-            <div className="mb-8 text-center">
+            <div className="mb-8 text-center animate-in fade-in slide-in-from-top-6 duration-700 ease-out">
              
-              <h1 className="title-underline text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
+              <h1 className="title-underline text-3xl md:text-4xl lg:text-5xl font-bold mb-2 animate-in fade-in slide-in-from-top-8 duration-1000 ease-out" style={{ animationDelay: '100ms' }}>
                 {lang === "ckb" ? t("home.titleKurdish") : t("home.title")}
               </h1>
-              <p className="text-gray-600 dark:text-slate-300 text-sm">{t("home.subtitle")}</p>
+              <p className="text-gray-600 dark:text-slate-300 text-sm animate-in fade-in slide-in-from-bottom-4 duration-1000 ease-out" style={{ animationDelay: '300ms' }}>{t("home.subtitle")}</p>
             </div>
 
             {/* Category Filter */}
@@ -309,9 +309,9 @@ export default function HomePage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{t("home.noMenuYet")}</h2>
             <p className="text-gray-600 mb-8">{t("home.startByAdding")}</p>
             <Link href="/admin/login">
-              <Button className="bg-orange-600 hover:bg-orange-700">
+              <button className="px-6 py-2.5 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-lg transition">
                 {t("home.goAdmin")}
-              </Button>
+              </button>
             </Link>
           </div>
         )}
@@ -356,12 +356,12 @@ export default function HomePage() {
                 <p className="text-gray-600 dark:text-slate-300 text-sm mb-4" dir={lang === "ckb" ? "rtl" : "ltr"}>
                   {lang === "ckb" ? (selectedItem.descriptionKurdish || selectedItem.description) : selectedItem.description}
                 </p>
-                <Button 
+                <button 
                   onClick={() => setSelectedItem(null)}
-                  className="w-full bg-gray-600 hover:bg-gray-700"
+                  className="w-full py-2.5 px-4 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-lg transition"
                 >
                   {t("common.close")}
-                </Button>
+                </button>
               </div>
             </>
           )}
@@ -517,16 +517,15 @@ export default function HomePage() {
       <footer className="mt-20 pb-1">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center">
             <p className="text-gray-500 dark:text-slate-400 text-sm font-light tracking-wide">Designed and Developed by</p>
-          <Button
-            variant="link"
-             className="font-semibold text-gray-800 dark:text-slate-100 underline items-center gap-2 dark:hover:text-orange-300"
-            asChild
+          <a 
+            href="https://www.facebook.com/mahamad.khdir.104" 
+            target="_blank" 
+            rel="noreferrer"
+            className="font-semibold text-gray-800 dark:text-slate-100 underline flex items-center gap-2 hover:text-orange-500 dark:hover:text-orange-300 transition"
           >
-            <a href="https://www.facebook.com/mahamad.khdir.104" target="_blank" rel="noreferrer">
                <Facebook size={16} />
                Hama Sha
             </a>
-          </Button>
         </div>
       </footer>
     </div>

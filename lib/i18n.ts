@@ -14,8 +14,6 @@ export const translations: Record<AppLang, Record<string, string>> = {
     "theme.dark": "Dark",
 
     "lang.switch": "Language",
-    "lang.en": "English",
-    "lang.ckb": "Kurdî (Sorani)",
 
     "home.title": "CAFFE 24",
     "home.titleKurdish": "CAFFE 24",
@@ -49,7 +47,6 @@ export const translations: Record<AppLang, Record<string, string>> = {
     "admin.enterUsername": "Enter your username",
     "admin.enterPassword": "Enter your password",
     "admin.invalidCreds": "Invalid username or password",
-    "admin.demoCreds": "Demo Credentials",
     "admin.backToHome": "Back to Home",
 
     "admin.menuManagerTitle": "Menu Manager",
@@ -103,11 +100,9 @@ export const translations: Record<AppLang, Record<string, string>> = {
 
     "contact.title": "Contact Us",
     "contact.phone1": "07510278487",
-    "contact.phone2": "07719776307",
     "contact.location": "Qalatdizah - Opposite asuda bazar ",
     "contact.hours": "10:00 AM - 11:00 PM",
     "contact.daily": "Daily without Friday",
-    "contact.callNow": "Call Now",
     "contact.snapchat": "https://snapchat.com/add/yourusername",
     "contact.whatsapp": "https://wa.me/9647515481228",
     "contact.viber": "viber://chat?number=%2B9647515481228",
@@ -122,8 +117,6 @@ export const translations: Record<AppLang, Record<string, string>> = {
     "theme.dark": "تاریک",
 
     "lang.switch": "زمان",
-    "lang.en": "English",
-    "lang.ckb": "کوردی (سۆرانی)",
 
     "home.title": " فاست پیتزا ",
     "home.titleEnglish": "Fast Pizza",
@@ -157,7 +150,6 @@ export const translations: Record<AppLang, Record<string, string>> = {
     "admin.enterUsername": "ناوی بەکارهێنەرت بنووسە",
     "admin.enterPassword": "وشەی نهێنیت بنووسە",
     "admin.invalidCreds": "ناوی بەکارهێنەر یان وشەی نهێنی هەڵەیە",
-    "admin.demoCreds": "زانیاری نموونە",
     "admin.backToHome": "گەڕانەوە بۆ سەرەکی",
 
     "admin.menuManagerTitle": "بەڕێوەبردنی مێنو",
@@ -208,8 +200,6 @@ export const translations: Record<AppLang, Record<string, string>> = {
 
     "admin.logout": "دەرچوون",
     "admin.dashboardTitle": "داشبۆردی ئەدمین",
-    // "admin.cafeMenu": "مینوی فاست فود",
-
     "contact.title": "تێپەڕاندنی زانیاری",
     "contact.phone1": "07515481228",
     "contact.location": "   قەڵادزێ - بەرامبەر پاڕکی شار",

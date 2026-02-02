@@ -30,7 +30,7 @@ export const translations: Record<AppLang, Record<string, string>> = {
     "categories.icecoffee": "Ice coffee",
     "categories.mexican": "Mexican",
     "categories.freshdrinks": "Fresh drinks",
-    "categories.milkshake": "Milkshake",
+    "categories.milkshake": "Milk shake",
     "categories.syrup": "Syrup",
     "categories.sweets": "Sweets",
     "categories.hotdrinks": "Hot drinks",

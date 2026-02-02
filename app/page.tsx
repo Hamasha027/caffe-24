@@ -36,7 +36,13 @@ export default function HomePage() {
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    // Set dark as default theme on first load
+    const savedTheme = localStorage.getItem('theme');
+    if (!savedTheme) {
+      setTheme('dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  }, [setTheme]);
 
   const currencyLabel = lang === "ckb" ? "دینار" : "IQD";
 
@@ -68,13 +74,13 @@ export default function HomePage() {
   const categories = useMemo(
     () => [
       { id: "all", name: t("categories.all"), icon: Layers },
-      { id: "icecoffee", name: t("categories.icecoffee"), icon: IceCream },
+      { id: "ice coffee", name: t("categories.icecoffee"), icon: IceCream },
       { id: "mexican", name: t("categories.mexican"), icon: Wine },
-      { id: "freshdrinks", name: t("categories.freshdrinks"), icon: CupSoda },
-      { id: "milkshake", name: t("categories.milkshake"), icon: Soup },
+      { id: "fresh drinks", name: t("categories.freshdrinks"), icon: CupSoda },
+      { id: "milk shake", name: t("categories.milkshake"), icon: Soup },
       { id: "syrup", name: t("categories.syrup"), icon: Droplets },
       { id: "sweets", name: t("categories.sweets"), icon: Candy },
-      { id: "hotdrinks", name: t("categories.hotdrinks"), icon: Flame },
+      { id: "hot drinks", name: t("categories.hotdrinks"), icon: Flame },
       { id: "coffee", name: t("categories.coffee"), icon: Coffee },
     ],
     [t]
@@ -99,18 +105,35 @@ export default function HomePage() {
     });
   }, [items, selectedCategory, searchTerm]);
 
+  const formatCategoryName = (category: string) => {
+    // Format category names with proper spacing
+    const formatted = category
+      .replace(/icecoffee/gi, 'Ice Coffee')
+      .replace(/hotdrinks/gi, 'Hot Drinks')
+      .replace(/milkshake/gi, 'Milk Shake');
+    
+    // Capitalize first letter if not already formatted
+    return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+  };
+
   const getCategoryBadgeColor = (category: string) => {
-    const colors: Record<string, string> = {
-      pizza: "bg-orange-100 text-orange-800",
-      burger: "bg-red-100 text-red-800",
-      coffee: "bg-amber-100 text-amber-800",
-      drinks: "bg-blue-100 text-blue-800",
+    const colors: Record<string, { light: string; dark: string }> = {
+      icecoffee: { light: "bg-cyan-100 text-cyan-800", dark: "dark:bg-cyan-900/40 dark:text-cyan-100" },
+      mexican: { light: "bg-yellow-100 text-yellow-800", dark: "dark:bg-yellow-900/40 dark:text-yellow-100" },
+      "fresh drinks": { light: "bg-blue-100 text-blue-800", dark: "dark:bg-blue-900/40 dark:text-blue-100" },
+      milkshake: { light: "bg-pink-100 text-pink-800", dark: "dark:bg-pink-900/40 dark:text-pink-100" },
+      syrup: { light: "bg-purple-100 text-purple-800", dark: "dark:bg-purple-900/40 dark:text-purple-100" },
+      sweets: { light: "bg-rose-100 text-rose-800", dark: "dark:bg-rose-900/40 dark:text-rose-100" },
+      hotdrinks: { light: "bg-orange-100 text-orange-800", dark: "dark:bg-orange-900/40 dark:text-orange-100" },
+      coffee: { light: "bg-amber-100 text-amber-800", dark: "dark:bg-amber-900/40 dark:text-amber-100" },
+      drinks: { light: "bg-blue-100 text-blue-800", dark: "dark:bg-blue-900/40 dark:text-blue-100" },
     };
-    return colors[category] || "bg-gray-100 text-gray-800";
+    const categoryColors = colors[category] || { light: "bg-gray-100 text-gray-800", dark: "dark:bg-gray-900/40 dark:text-gray-100" };
+    return `${categoryColors.light} ${categoryColors.dark}`;
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-white to-gray-50 dark:from-slate-950 dark:to-slate-900 text-slate-900 dark:text-slate-100">
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-slate-950 dark:to-slate-900 text-slate-900 dark:text-slate-100">
       <nav className="bg-white/90 dark:bg-slate-900/80 sm:backdrop-blur shadow-sm border-0">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-3">
@@ -215,8 +238,8 @@ export default function HomePage() {
                     
                     {/* Badge */}
                     <div className="absolute top-3 right-3">
-                      <Badge className={`${getCategoryBadgeColor(item.category || "drinks")} dark:bg-orange-900/40 dark:text-orange-100`}>
-                        {(item.category || "drinks").charAt(0).toUpperCase() + (item.category || "drinks").slice(1)}
+                      <Badge className={getCategoryBadgeColor(item.category || "drinks")}>
+                        {formatCategoryName(item.category || "drinks")}
                       </Badge>
                     </div>
 

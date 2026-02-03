@@ -562,7 +562,7 @@ export default function HomePage() {
             rel="noreferrer"
             className="font-semibold text-gray-800 dark:text-slate-100 underline flex items-center hover:text-amber-700 dark:hover:text-amber-300 transition"
           >
-               <Facebook size={16} />
+               <Facebook size={17} />
                Hama Sha
             </a>
         </div>

@@ -5,7 +5,6 @@ import Image from 'next/image';
 export default function LoadingSpinner() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 relative overflow-hidden">
-      {/* Premium animated background with gradient orbs */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Top-left glow */}
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '3s' }} />
@@ -83,7 +82,7 @@ export default function LoadingSpinner() {
         {/* Enhanced progress bar with shimmer */}
         <div className="w-64 h-1.5 bg-slate-700/50 dark:bg-slate-800/50 rounded-full overflow-hidden backdrop-blur-sm border border-slate-600/20">
           <div 
-            className="h-full rounded-full bg-linear-to-r from-amber-400 via-blue-400 via-purple-400 to-amber-400 shadow-lg shadow-blue-500/50" 
+            className="h-full rounded-full bg-linear-to-r from-amber-400  00 to-amber-400 shadow-lg shadow-blue-500/50" 
             style={{ 
               backgroundSize: '200% 100%',
               animation: 'shimmer 2.5s infinite'

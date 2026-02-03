@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function LoadingSpinner() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 relative overflow-hidden">
       {/* Premium animated background with gradient orbs */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Top-left glow */}
@@ -21,7 +21,7 @@ export default function LoadingSpinner() {
       </div>
 
       {/* Grid pattern overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.02)_1px,transparent_1px)] bg-size-[40px_40px]" />
 
       {/* Main Content */}
       <div className="flex flex-col items-center justify-center gap-8 relative z-10">
@@ -47,7 +47,7 @@ export default function LoadingSpinner() {
           
           {/* Center logo with enhanced styling */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-28 h-28 relative bg-gradient-to-br from-white to-slate-100 dark:from-slate-700 dark:to-slate-800 rounded-full flex items-center justify-center shadow-2xl shadow-amber-500/40 dark:shadow-blue-500/40 border-4 border-white/20 dark:border-slate-600/20 backdrop-blur-sm">
+            <div className="w-28 h-28 relative bg-linear-to-br from-white to-slate-100 dark:from-slate-700 dark:to-slate-800 rounded-full flex items-center justify-center shadow-2xl shadow-amber-500/40 dark:shadow-blue-500/40 border-4 border-white/20 dark:border-slate-600/20 backdrop-blur-sm">
               <Image 
                 src="/image/2.png" 
                 alt="Logo" 
@@ -63,16 +63,16 @@ export default function LoadingSpinner() {
         {/* Loading Text with enhanced animation */}
         <div className="text-center mt-4">
           <p className="text-2xl font-bold tracking-widest">
-            <span className="bg-gradient-to-r from-amber-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse" style={{ animationDuration: '2s' }}>
+            <span className="bg-linear-to-r from-amber-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse" style={{ animationDuration: '2s' }}>
               LOADING
             </span>
           </p>
           
           {/* Animated dots */}
           <div className="flex items-center justify-center gap-1 mt-3">
-            <span className="w-2 h-2 bg-gradient-to-r from-amber-400 to-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
-            <span className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }} />
-            <span className="w-2 h-2 bg-gradient-to-r from-purple-400 to-amber-400 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }} />
+            <span className="w-2 h-2 bg-linear-to-r from-amber-400 to-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
+            <span className="w-2 h-2 bg-linear-to-r from-blue-400 to-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }} />
+            <span className="w-2 h-2 bg-linear-to-r from-purple-400 to-amber-400 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }} />
           </div>
           
           <p className="text-xs text-slate-300 dark:text-slate-400 mt-4 font-light tracking-widest">
@@ -83,7 +83,7 @@ export default function LoadingSpinner() {
         {/* Enhanced progress bar with shimmer */}
         <div className="w-64 h-1.5 bg-slate-700/50 dark:bg-slate-800/50 rounded-full overflow-hidden backdrop-blur-sm border border-slate-600/20">
           <div 
-            className="h-full rounded-full bg-gradient-to-r from-amber-400 via-blue-400 via-purple-400 to-amber-400 shadow-lg shadow-blue-500/50" 
+            className="h-full rounded-full bg-linear-to-r from-amber-400 via-blue-400 via-purple-400 to-amber-400 shadow-lg shadow-blue-500/50" 
             style={{ 
               backgroundSize: '200% 100%',
               animation: 'shimmer 2.5s infinite'

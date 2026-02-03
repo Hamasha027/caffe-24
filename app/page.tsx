@@ -81,7 +81,10 @@ export default function HomePage() {
         console.error("Failed to fetch menu items:", error);
         setItems([]);
       } finally {
-        setLoading(false);
+        // Add minimum 1 second delay to show the spinner
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
       }
     };
     fetchItems();
@@ -150,7 +153,7 @@ export default function HomePage() {
   };
 
   // Show loading spinner while fetching data
-  if (loading || !mounted) {
+  if (!mounted || loading) {
     return <LoadingSpinner />;
   }
 

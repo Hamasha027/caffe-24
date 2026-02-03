@@ -37,13 +37,13 @@ export default function HomePage() {
   const cardsTopRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    setMounted(true);
     // Set dark as default theme on first load
     const savedTheme = localStorage.getItem('theme');
     if (!savedTheme) {
       setTheme('dark');
       localStorage.setItem('theme', 'dark');
     }
+    setMounted(true);
   }, [setTheme]);
 
   // Handle scroll to top button visibility
@@ -153,7 +153,7 @@ export default function HomePage() {
   };
 
   // Show loading spinner while fetching data
-  if (!mounted || loading) {
+  if (loading) {
     return <LoadingSpinner />;
   }
 

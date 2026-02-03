@@ -553,7 +553,7 @@ export default function HomePage() {
       </Dialog>
 
       {/* Footer */}
-      <footer className="text-xs   pb-1 w-full dark:bg-slate-900/50">
+      <footer className="text-xs   pt-12 pb-6 w-full dark:bg-slate-900/50">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center">
             <p className="text-gray-500 dark:text-slate-400 text-sm font-light tracking-wide">Designed and Developed by</p>
           <a 

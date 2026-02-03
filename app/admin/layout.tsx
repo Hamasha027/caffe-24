@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useI18n } from "@/components/language-provider";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 export default function AdminLayout({
   children,
@@ -42,10 +43,7 @@ export default function AdminLayout({
   if (isLoading && !isLoginPage) {
     return (
       <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin text-4xl mb-4">☕</div>
-          <p className="text-gray-600 dark:text-slate-300 font-semibold">{t("common.loading")}</p>
-        </div>
+        <LoadingSpinner />
       </div>
     );
   }

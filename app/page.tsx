@@ -84,7 +84,7 @@ export default function HomePage() {
         // Add minimum 1.5 second delay to show the spinner
         setTimeout(() => {
           setLoading(false);
-        }, 1500);
+        }, 500);
       }
     };
     fetchItems();

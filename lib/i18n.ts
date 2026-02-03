@@ -99,7 +99,7 @@ export const translations: Record<AppLang, Record<string, string>> = {
     "admin.dashboardTitle": "Admin Dashboard",
 
     "contact.title": "Contact Us",
-    "contact.phone1": "07510278487",
+    "contact.phone1": "07515481228",
     "contact.location": "Qalatdizah - Opposite shar Park",
     "contact.hours": "12:00 AM - 12:00 PM",
     "contact.daily": "Daily without Friday",
@@ -117,9 +117,6 @@ export const translations: Record<AppLang, Record<string, string>> = {
     "theme.dark": "تاریک",
 
     "lang.switch": "زمان",
-
-    "home.title": " فاست پیتزا ",
-    "home.titleEnglish": "Fast Pizza",
     "home.subtitle": "خێرا لە خزمەت ، بێوێنە لە تام",
     "home.searchPlaceholder": "  دەتهەوێت چی بخۆیتەوە؟",
     "home.noItemsFound": "هیچ شتێک نەدۆزرایەوە.  ",
@@ -133,7 +130,7 @@ export const translations: Record<AppLang, Record<string, string>> = {
     "categories.freshdrinks": " فرێشەکان",
     "categories.milkshake": "میلک شەیک",
     "categories.syrup": "سیرەب",
-    "categories.sweets": "شیرینەمەنی",
+    "categories.sweets": "شیرینی",
     "categories.hotdrinks": "خواردنەوەی گەرم",
     "categories.coffee": "قاوە",
 

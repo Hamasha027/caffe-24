@@ -4,99 +4,94 @@ import Image from 'next/image';
 
 export default function LoadingSpinner() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-black to-slate-950 relative overflow-hidden">
+      {/* Animated background blur orbs */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Top-left glow */}
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '3s' }} />
+        {/* Large amber blob top-left */}
+        <div className="absolute -top-32 -left-32 w-96 h-96 bg-amber-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s' }} />
         
-        {/* Top-right glow */}
-        <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s', animationDelay: '0.5s' }} />
+        {/* Large amber blob top-right */}
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-amber-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '7s', animationDelay: '1s' }} />
         
-        {/* Bottom-left glow */}
-        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-purple-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }} />
+        {/* Large amber blob bottom-left */}
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-amber-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s', animationDelay: '2s' }} />
         
-        {/* Bottom-right glow */}
-        <div className="absolute -bottom-20 -right-40 w-80 h-80 bg-amber-600/15 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '3.5s', animationDelay: '1.5s' }} />
+        {/* Large amber blob bottom-right */}
+        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-600/15 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6.5s', animationDelay: '0.5s' }} />
       </div>
 
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.02)_1px,transparent_1px)] bg-size-[40px_40px]" />
+      {/* Grid overlay with subtle animation */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(180,83,9,.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(180,83,9,.08)_1px,transparent_1px)] bg-size-[80px_80px] opacity-40" />
+      
+      {/* Radial gradient vignette */}
+      <div className="absolute inset-0 bg-radial-gradient(circle at center, transparent 0%, rgba(15, 23, 42, 0.5) 100%)" />
 
       {/* Main Content */}
-      <div className="flex flex-col items-center justify-center gap-8 relative z-10">
+      <div className="flex flex-col items-center justify-center gap-4 relative z-10">
         
-        {/* Premium Spinner with Logo - Enhanced */}
-        <div className="relative w-40 h-40">
-          {/* Outer glow effect */}
-          <div className="absolute inset-0 rounded-full blur-xl opacity-75 animate-pulse" 
-            style={{
-              background: 'radial-gradient(circle, rgba(217, 119, 6, 0.3) 0%, rgba(59, 130, 246, 0.2) 100%)',
-              animationDuration: '2s'
-            }} 
+        {/* Three Line Circular Spinner */}
+        <div className="relative w-20 h-20">
+          {/* Outer ring - Fast rotation */}
+          <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-amber-400 border-r-amber-500 animate-spin shadow-lg shadow-amber-600/40"
+            style={{ animationDuration: '1.5s' }}
           />
           
-          {/* Outer rotating ring - Amber */}
-          <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-amber-400 border-r-amber-500 border-br-amber-600 animate-spin shadow-lg shadow-amber-500/50" style={{ animationDuration: '2.5s' }} />
+          {/* Middle ring - Medium rotation */}
+          <div className="absolute inset-2 rounded-full border-3 border-transparent border-b-amber-400 border-l-amber-500 animate-spin shadow-md shadow-amber-600/30"
+            style={{ animationDuration: '2.5s', animationDirection: 'reverse' }}
+          />
           
-          {/* Middle rotating ring - Blue (opposite) */}
-          <div className="absolute inset-3 rounded-full border-3 border-transparent border-b-blue-400 border-l-blue-500 animate-spin shadow-lg shadow-blue-500/30" style={{ animationDuration: '3.5s', animationDirection: 'reverse' }} />
+          {/* Inner ring - Slow rotation */}
+          <div className="absolute inset-4 rounded-full border-2 border-transparent border-t-amber-300 border-r-amber-400 animate-spin"
+            style={{ animationDuration: '3s' }}
+          />
           
-          {/* Inner rotating ring - Gradient */}
-          <div className="absolute inset-6 rounded-full border-2 border-transparent border-t-purple-400 border-r-amber-400 opacity-60 animate-spin" style={{ animationDuration: '4s' }} />
-          
-          {/* Center logo with enhanced styling */}
+          {/* Center logo */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-28 h-28 relative bg-linear-to-br from-white to-slate-100 dark:from-slate-700 dark:to-slate-800 rounded-full flex items-center justify-center shadow-2xl shadow-amber-500/40 dark:shadow-blue-500/40 border-4 border-white/20 dark:border-slate-600/20 backdrop-blur-sm">
+            <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center shadow-xl shadow-amber-600/60 border border-amber-300/30 backdrop-blur-sm">
               <Image 
                 src="/image/2.png" 
                 alt="Logo" 
-                width={80} 
-                height={80}
-                className="w-20 h-20 object-contain drop-shadow-lg"
+                width={32} 
+                height={32}
+                className="w-8 h-8 object-contain drop-shadow-lg filter brightness-110"
                 priority
               />
             </div>
           </div>
         </div>
 
-        {/* Loading Text with enhanced animation */}
-        <div className="text-center mt-4">
-          <p className="text-2xl font-bold tracking-widest">
-            <span className="bg-linear-to-r from-amber-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse" style={{ animationDuration: '2s' }}>
+        {/* Loading Text */}
+        <div className="text-center">
+          <p className="text-[14x] font-bold tracking-wide">
+            <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 bg-clip-text text-transparent animate-pulse" style={{ animationDuration: '2s' }}>
               LOADING
             </span>
           </p>
           
           {/* Animated dots */}
-          <div className="flex items-center justify-center gap-1 mt-3">
-            <span className="w-2 h-2 bg-linear-to-r from-amber-400 to-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
-            <span className="w-2 h-2 bg-linear-to-r from-blue-400 to-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }} />
-            <span className="w-2 h-2 bg-linear-to-r from-purple-400 to-amber-400 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }} />
+          <div className="flex items-center justify-center gap-2 mt-2">
+            <div className="w-2 h-2 bg-gradient-to-r from-amber-400 to-amber-500 rounded-full animate-bounce" style={{ animationDelay: '0s', animationDuration: '1.4s' }} />
+            <div className="w-2 h-2 bg-gradient-to-r from-amber-500 to-amber-600 rounded-full animate-bounce" style={{ animationDelay: '0.2s', animationDuration: '1.4s' }} />
+            <div className="w-2 h-2 bg-gradient-to-r from-amber-400 to-amber-500 rounded-full animate-bounce" style={{ animationDelay: '0.4s', animationDuration: '1.4s' }} />
           </div>
-          
-          <p className="text-xs text-slate-300 dark:text-slate-400 mt-4 font-light tracking-widest">
-            Preparing your menu
-          </p>
+       
         </div>
-
-        {/* Enhanced progress bar with shimmer */}
-        <div className="w-64 h-1.5 bg-slate-700/50 dark:bg-slate-800/50 rounded-full overflow-hidden backdrop-blur-sm border border-slate-600/20">
-          <div 
-            className="h-full rounded-full bg-linear-to-r from-amber-400  00 to-amber-400 shadow-lg shadow-blue-500/50" 
-            style={{ 
-              backgroundSize: '200% 100%',
-              animation: 'shimmer 2.5s infinite'
-            }} 
-          />
-        </div>
+        
+        {/* Beautiful progress bar */}
+       
+       
       </div>
 
       <style jsx>{`
         @keyframes shimmer {
-          0%, 100% {
-            background-position: 200% 0;
+          0% {
+            background-position: -200% 0;
           }
           50% {
+            background-position: 200% 0;
+          }
+          100% {
             background-position: -200% 0;
           }
         }

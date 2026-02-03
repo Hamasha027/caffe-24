@@ -10,6 +10,7 @@ import { useI18n } from "@/components/language-provider";
 import { LanguageButton } from "@/components/language-fab";
 import Image from "next/image";
 import Celebration from "@/components/Celebration";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 interface MenuItem {
   id: number;
@@ -147,6 +148,11 @@ export default function HomePage() {
     const categoryColors = colors[category] || { light: "bg-gray-100 text-gray-800", dark: "dark:bg-gray-900/40 dark:text-gray-100" };
     return `${categoryColors.light} ${categoryColors.dark}`;
   };
+
+  // Show loading spinner while fetching data
+  if (loading || !mounted) {
+    return <LoadingSpinner />;
+  }
 
   return (
 

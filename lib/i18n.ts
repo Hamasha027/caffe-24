@@ -100,10 +100,10 @@ export const translations: Record<AppLang, Record<string, string>> = {
 
     "contact.title": "Contact Us",
     "contact.phone1": "07510278487",
-    "contact.location": "Qalatdizah - Opposite asuda bazar ",
-    "contact.hours": "10:00 AM - 11:00 PM",
+    "contact.location": "Qalatdizah - Opposite shar Park",
+    "contact.hours": "12:00 AM - 12:00 PM",
     "contact.daily": "Daily without Friday",
-    "contact.snapchat": "https://snapchat.com/add/yourusername",
+    "contact.snapchat": "https://www.snapchat.com/add/caffe_24?share_id=EmckkaBogSs&locale=en-GB",
     "contact.whatsapp": "https://wa.me/9647515481228",
     "contact.viber": "viber://chat?number=%2B9647515481228",
   },

@@ -1,6 +1,6 @@
 'use client';
 import Link from "next/link";
-import { Search, Coffee, CupSoda, Layers, Moon, Sun, Facebook, X, Phone, MapPin, Clock, IceCream, Droplets, Candy, Flame, Wine, ArrowUp } from "lucide-react";
+import { Search, Coffee, Layers, Moon, Sun, Facebook, X, Phone, MapPin, Clock, Droplets,PillBottle , Flame, Wine, ArrowUp,Salad,Utensils,Citrus } from "lucide-react";
 import { useMemo, useState, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 import { Input } from "@/components/ui/input";
@@ -89,12 +89,12 @@ export default function HomePage() {
   const categories = useMemo(
     () => [
       { id: "all", name: t("categories.all"), icon: Layers },
-      { id: "icecoffee", name: t("categories.icecoffee"), icon: IceCream },
+      { id: "icecoffee", name: t("categories.icecoffee"), icon: PillBottle },
       { id: "mexican", name: t("categories.mexican"), icon: Wine },
-      { id: "freshdrinks", name: t("categories.freshdrinks"), icon: CupSoda },
-      { id: "milkshake", name: t("categories.milkshake"), icon: IceCream },
+      { id: "freshdrinks", name: t("categories.freshdrinks"), icon: Citrus },
+      { id: "milkshake", name: t("categories.milkshake"), icon: Salad },
       { id: "syrup", name: t("categories.syrup"), icon: Droplets },
-      { id: "sweets", name: t("categories.sweets"), icon: Candy },
+      { id: "sweets", name: t("categories.sweets"), icon: Utensils },
       { id: "hotdrinks", name: t("categories.hotdrinks"), icon: Flame },
       { id: "coffee", name: t("categories.coffee"), icon: Coffee },
     ],

@@ -18,8 +18,8 @@ export default function AdminLoginPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const ADMIN_USERNAME = "@@@@@";
-  const ADMIN_PASSWORD = "#####";
+  const ADMIN_USERNAME = "caffe24";
+  const ADMIN_PASSWORD = "Caffe!@#24";
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();

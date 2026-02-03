@@ -43,8 +43,8 @@ export default function AdminLoginPage() {
   return (
     <div className="min-h-screen bg-linear-to-b from-white to-gray-50 dark:from-slate-950 dark:to-slate-900 text-slate-900 dark:text-slate-100 flex items-center justify-center px-4 py-10">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-10 -left-16 w-64 h-64 bg-orange-200/50 dark:bg-orange-900/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-72 h-72 bg-orange-100 dark:bg-orange-900/20 rounded-full blur-3xl" />
+        <div className="absolute -top-10 -left-16 w-64 h-64 bg-amber-200/50 dark:bg-amber-900/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-amber-100 dark:bg-amber-900/20 rounded-full blur-3xl" />
       </div>
 
       <div className="w-full max-w-md relative z-10">
@@ -52,7 +52,7 @@ export default function AdminLoginPage() {
           <div className="flex items-center gap-3">
             <Image src="/image/2.png" alt="Logo" width={48} height={48} />
             <div>
-              <p className="text-xl font-bold text-orange-600">{t("admin.area")}</p>
+              <p className="text-xl font-bold text-amber-700">{t("admin.area")}</p>
              
             </div>
           </div>
@@ -68,7 +68,7 @@ export default function AdminLoginPage() {
               <div className="space-y-2">
                 <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">{t("admin.username")}</label>
                 <div className="relative">
-                  <User className="absolute left-3 top-3.5 text-orange-500" size={18} />
+                  <User className="absolute left-3 top-3.5 text-amber-600" size={18} />
                   <Input
                     type="text"
                     value={username}
@@ -83,7 +83,7 @@ export default function AdminLoginPage() {
               <div className="space-y-2">
                 <label className="text-sm font-semibold text-slate-700 dark:text-slate-200">{t("admin.password")}</label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3.5 text-orange-500" size={18} />
+                  <Lock className="absolute left-3 top-3.5 text-amber-600" size={18} />
                   <Input
                     type="password"
                     value={password}
@@ -104,7 +104,7 @@ export default function AdminLoginPage() {
               <Button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold h-11"
+                className="w-full bg-amber-600 hover:bg-amber-600 text-white font-semibold h-11"
               >
                 {loading ? t("admin.signingIn") : t("admin.signIn")}
               </Button>
@@ -113,7 +113,7 @@ export default function AdminLoginPage() {
         </Card>
 
         <div className="mt-6 text-center">
-          <Link href="/" className="text-slate-700 dark:text-slate-200 hover:text-orange-600 font-semibold transition inline-flex items-center gap-2">
+          <Link href="/" className="text-slate-700 dark:text-slate-200 hover:text-amber-600 font-semibold transition inline-flex items-center gap-2">
             <span className="text-lg">←</span>
             {t("common.backHome")}
           </Link>

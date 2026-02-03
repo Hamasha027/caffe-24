@@ -16,6 +16,7 @@ export default function Loading() {
               <div className="flex items-center justify-between pt-2">
                 <div className="h-6 w-16 rounded-full bg-slate-200 dark:bg-slate-800" />
                 <div className="h-6 w-10 rounded-full bg-slate-200 dark:bg-slate-800" />
+                <h1>Loading...</h1>
               </div>
             </div>
           ))}

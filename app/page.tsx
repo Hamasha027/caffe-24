@@ -5,10 +5,11 @@ import { useMemo, useState, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogClose, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Dialog, DialogClose, DialogContent } from "@/components/ui/dialog";
 import { useI18n } from "@/components/language-provider";
 import { LanguageButton } from "@/components/language-fab";
 import Image from "next/image";
+import Celebration from "@/components/Celebration";
 
 interface MenuItem {
   id: number;
@@ -124,7 +125,7 @@ export default function HomePage() {
       milkshake: { light: "bg-pink-100 text-pink-800", dark: "dark:bg-pink-900/40 dark:text-pink-100" },
       syrup: { light: "bg-purple-100 text-purple-800", dark: "dark:bg-purple-900/40 dark:text-purple-100" },
       sweets: { light: "bg-rose-100 text-rose-800", dark: "dark:bg-rose-900/40 dark:text-rose-100" },
-      hotdrinks: { light: "bg-orange-100 text-orange-800", dark: "dark:bg-orange-900/40 dark:text-orange-100" },
+      hotdrinks: { light: "bg-amber-100 text-amber-800", dark: "dark:bg-amber-900/40 dark:text-amber-100" },
       coffee: { light: "bg-amber-100 text-amber-800", dark: "dark:bg-amber-900/40 dark:text-amber-100" },
       drinks: { light: "bg-blue-100 text-blue-800", dark: "dark:bg-blue-900/40 dark:text-blue-100" },
     };
@@ -133,7 +134,11 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-slate-950 dark:to-slate-900 text-slate-900 dark:text-slate-100">
+
+
+  
+  <div className="min-h-screen bg-linear-to-b from-white to-gray-50 dark:from-slate-950 dark:to-slate-900 text-slate-900 dark:text-slate-100">
+      <Celebration />
       <nav className="bg-white/90 dark:bg-slate-900/80 sm:backdrop-blur shadow-sm border-0">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-3">
@@ -169,7 +174,17 @@ export default function HomePage() {
             <div className="mb-8 text-center animate-in fade-in slide-in-from-top-6 duration-700 ease-out">
              
               <h1 className="title-underline text-3xl md:text-4xl lg:text-5xl font-bold mb-2 animate-in fade-in slide-in-from-top-8 duration-1000 ease-out" style={{ animationDelay: '100ms' }}>
-                {lang === "ckb" ? t("home.titleKurdish") : t("home.title")}
+                {lang === "ckb" ? (
+                  <>
+                    {t("home.titleKurdish").split("24")[0]}
+                    <span className="text-amber-600">24</span>
+                  </>
+                ) : (
+                  <>
+                    {t("home.title").split("24")[0]}
+                    <span className="text-amber-600">24</span>
+                  </>
+                )}
               </h1>
               <p className="text-gray-600 dark:text-slate-300 text-sm animate-in fade-in slide-in-from-bottom-4 duration-1000 ease-out" style={{ animationDelay: '300ms' }}>{t("home.subtitle")}</p>
             </div>
@@ -187,7 +202,7 @@ export default function HomePage() {
                         onClick={() => setSelectedCategory(cat.id)}
                         className={`flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5 px-3 py-2 sm:pb-2 sm:pt-0 rounded-lg sm:rounded-none text-xs sm:text-base lg:text-lg font-semibold transition whitespace-nowrap border-b-2 sm:border-b-2 ${
                           active
-                            ? "border-orange-500 text-orange-600 dark:text-orange-300 bg-orange-50 dark:bg-orange-950/30 sm:bg-transparent"
+                            ? "border-amber-600 text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/30 sm:bg-transparent"
                             : "border-transparent text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-slate-800 sm:hover:bg-transparent hover:border-gray-300 dark:hover:border-slate-600"
                         }`}
                       >
@@ -255,7 +270,7 @@ export default function HomePage() {
                           <h5 className={`flex-1 min-w-0 text-sm sm:text-base font-semibold tracking-wide text-gray-900 dark:text-slate-50 truncate`} dir={lang === "ckb" ? "rtl" : "ltr"}>
                             {lang === "ckb" ? (item.titleKurdish || item.title) : item.title}
                           </h5>
-                          <span className="rounded-full bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-100 text-xs sm:text-sm font-bold whitespace-nowrap px-0.5 shrink-0">
+                          <span className="rounded-full bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-100 text-xs sm:text-sm font-bold whitespace-nowrap px-0.5 shrink-0">
                             {item.price?.toLocaleString()} {currencyLabel}
                           </span>
                         </div>
@@ -309,7 +324,7 @@ export default function HomePage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{t("home.noMenuYet")}</h2>
             <p className="text-gray-600 mb-8">{t("home.startByAdding")}</p>
             <Link href="/admin/login">
-              <button className="px-6 py-2.5 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-lg transition">
+              <button className="px-6 py-2.5 bg-amber-700 hover:bg-amber-800 text-white font-semibold rounded-lg transition">
                 {t("home.goAdmin")}
               </button>
             </Link>
@@ -348,7 +363,7 @@ export default function HomePage() {
                   <h2 className="text-lg font-semibold text-gray-900 dark:text-slate-50 leading-tight wrap-break-word" dir={lang === "ckb" ? "rtl" : "ltr"}>
                     {lang === "ckb" ? (selectedItem.titleKurdish || selectedItem.title) : selectedItem.title}
                   </h2>
-                  <span className="text-base font-bold text-orange-600 whitespace-nowrap justify-self-end row-span-2 self-center">
+                  <span className="text-base font-bold text-amber-700 whitespace-nowrap justify-self-end row-span-2 self-center">
                     {selectedItem.price?.toLocaleString()} {currencyLabel}
                   </span>
                 </div>
@@ -377,45 +392,33 @@ export default function HomePage() {
 
 <div className="bg-linear-to-br from-[#6F4E37] to-[#3C2A21] dark:from-[#3C2A21] dark:to-[#1B1212]">
             {/* Header */}
-            <div className="px-5 py-6 text-center text-white">
-              <div className="flex justify-center mb-3">
-                <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
-             <Image src="/image/2.png" alt="Logo" width={58} height={58} />
+            <div className="px-4 py-3 text-center text-white">
+              <div className="flex justify-center mb-2">
+                <div className="bg-white/20 backdrop-blur-sm rounded-full p-2">
+             <Image src="/image/2.png" alt="Logo" width={40} height={40} />
                 </div>
               </div>
-              <h2 className="text-2xl font-bold mb-1">
-                {lang === "ckb" ? t("home.titleKurdish") : t("home.title")}
+              <h2 className="text-lg font-bold mb-0">
+                {lang === "ckb" ? (
+                  <>
+                    {t("home.titleKurdish").split("24")[0]}
+                    <span className="text-amber-600">24</span>
+                  </>
+                ) : (
+                  <>
+                    {t("home.title").split("24")[0]}
+                    <span className="text-amber-600">24</span>
+                  </>
+                )}
               </h2>
            
             </div>
-
             {/* Cards Container */}
-            <div className="bg-white dark:bg-slate-800 rounded-t-3xl p-5 space-y-3">
+            <div className="bg-white dark:bg-slate-800 rounded-t-3xl p-3 space-y-2">
               {/* Phone Numbers Card */}
-              <div className="bg-linear-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 rounded-xl p-4 border-2 border-blue-200 dark:border-blue-600">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="bg-blue-500 rounded-full p-1.5">
-                    <Phone size={16} className="text-white" />
-                  </div>
-                  
-                  <p className="text-xs font-bold text-blue-900 dark:text-blue-100 uppercase tracking-wide">
-                    {lang === "en" ? "Phone Numbers" : "ژمارە تەلەفۆن"}
-                  </p>
-                </div>
-                
-                {/* Phone */}
-                <div>
-                  <button
-                    onClick={() => window.location.href = `tel:${t("contact.phone1")}`}
-                    className="text-sm font-bold text-blue-900 dark:text-blue-100 hover:text-blue-600 dark:hover:text-blue-300 transition break-all text-left hover:underline"
-                  >
-                    {t("contact.phone1")}
-                  </button>
-                </div>
-              </div>
-
+             
               {/* Social Media Card */}
-              <div className="bg-linear-to-br from-pink-50 to-pink-100 dark:from-pink-900/30 dark:to-pink-800/30 rounded-lg p-2 border border-pink-200 dark:border-pink-600">
+              <div className="bg-linear-to-br from-pink-50 to-pink-100 dark:from-pink-900/30 dark:to-pink-800/30 rounded-lg p-1.5 border border-pink-200 dark:border-pink-600">
                 <div className="flex items-center gap-1.5 mb-1.5">
                   <div className="rounded-full p-1.5">
                     <Image src="/image/halmat.jpeg" alt="Social Media" width={36} height={36} className="rounded-full" />
@@ -467,9 +470,30 @@ export default function HomePage() {
                   </a>
                 </div>
               </div>
+               <div className="bg-linear-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 rounded-xl p-3 border-2 border-blue-200 dark:border-blue-600">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="bg-blue-500 rounded-full p-1.5">
+                    <Phone size={16} className="text-white" />
+                  </div>
+                  
+                  <p className="text-xs font-bold text-blue-900 dark:text-blue-100 uppercase tracking-wide">
+                    {lang === "en" ? "Phone Numbers" : "ژمارە تەلەفۆن"}
+                  </p>
+                </div>
+                
+                {/* Phone */}
+                <div>
+                  <button
+                    onClick={() => window.location.href = `tel:${t("contact.phone1")}`}
+                    className="text-sm font-bold text-blue-900 dark:text-blue-100 hover:text-blue-600 dark:hover:text-blue-300 transition break-all text-left hover:underline"
+                  >
+                    {t("contact.phone1")}
+                  </button>
+                </div>
+              </div>
 
               {/* Hours Card */}
-              <div className="bg-linear-to-br from-amber-50 to-amber-100 dark:from-amber-900/30 dark:to-amber-800/30 rounded-xl p-4 border-2 border-amber-200 dark:border-amber-600">
+              <div className="bg-linear-to-br from-amber-50 to-amber-100 dark:from-amber-900/30 dark:to-amber-800/30 rounded-xl p-3 border-2 border-amber-200 dark:border-amber-600">
                 <div className="flex items-center gap-2 mb-2">
                   <div className="bg-amber-500 rounded-full p-1.5">
                     <Clock size={16} className="text-white" />
@@ -487,7 +511,7 @@ export default function HomePage() {
               </div>
 
               {/* Location Card */}
-              <div className="bg-linear-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 rounded-xl p-4 border-2 border-purple-200 dark:border-purple-600">
+              <div className="bg-linear-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 rounded-xl p-3 border-2 border-purple-200 dark:border-purple-600">
                 <div className="flex items-center gap-2 mb-2">
                   <div className="bg-purple-500 rounded-full p-1.5">
                     <MapPin size={16} className="text-white" />
@@ -504,7 +528,7 @@ export default function HomePage() {
               {/* Close Button */}
               <button
                 onClick={() => setShowAbout(false)}
-                className="w-full py-2.5 bg-linear-to-r from-gray-400 to-gray-500 dark:from-gray-600 dark:to-gray-700 hover:from-gray-500 hover:to-gray-600 dark:hover:from-gray-700 dark:hover:to-gray-800 text-white font-bold rounded-lg transition text-xs"
+                className="w-full py-2 bg-linear-to-r from-gray-400 to-gray-500 dark:from-gray-600 dark:to-gray-700 hover:from-gray-500 hover:to-gray-600 dark:hover:from-gray-700 dark:hover:to-gray-800 text-white font-bold rounded-lg transition text-xs"
               >
                 {lang === "en" ? "Close" : "داخستن"}
               </button>
@@ -521,7 +545,7 @@ export default function HomePage() {
             href="https://www.facebook.com/mahamad.khdir.104" 
             target="_blank" 
             rel="noreferrer"
-            className="font-semibold text-gray-800 dark:text-slate-100 underline flex items-center gap-2 hover:text-orange-500 dark:hover:text-orange-300 transition"
+            className="font-semibold text-gray-800 dark:text-slate-100 underline flex items-center gap-2 hover:text-amber-700 dark:hover:text-amber-300 transition"
           >
                <Facebook size={16} />
                Hama Sha

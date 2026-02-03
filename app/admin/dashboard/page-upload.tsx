@@ -173,7 +173,7 @@ export default function AdminDashboard() {
       <nav className="bg-white shadow-md sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <Link href="/admin" className="flex items-center gap-2 hover:text-orange-600 transition">
+            <Link href="/admin" className="flex items-center gap-2 hover:text-amber-600 transition">
               <Home size={20} />
               <span className="font-semibold text-gray-800">Back to Admin</span>
             </Link>

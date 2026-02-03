@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Dialog, DialogClose, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 interface MenuItem {
   id: number;
@@ -274,7 +275,7 @@ export default function AdminDashboard() {
   );
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-white via-orange-50/40 to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-900 dark:text-slate-50">
+    <div className="min-h-screen bg-linear-to-b from-white via-amber-50/40 to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-900 dark:text-slate-50">
       {successMessage && (
         <div className="fixed top-4 right-4 z-50 rounded-xl bg-emerald-600 text-white px-4 py-3 shadow-lg text-sm font-semibold">
           {successMessage}
@@ -287,7 +288,7 @@ export default function AdminDashboard() {
             <div className="flex items-center gap-3">
               <Image src="/image/2.png" alt="Logo" width={48} height={48} />
               <div>
-                <p className="text-xl font-bold text-orange-600">{t("admin.dashboardTitle")}</p>
+                <p className="text-xl font-bold text-amber-600">{t("admin.dashboardTitle")}</p>
 
               </div>
             </div>
@@ -307,7 +308,7 @@ export default function AdminDashboard() {
                   setImageError("");
                   setNewCategory("coffee");
                 }}
-                className="gap-2 bg-orange-600 hover:bg-orange-700 text-white"
+                className="gap-2 bg-amber-600 hover:bg-amber-600 text-white"
               >
                 <Plus size={18} />
                 {t("admin.addItem")}
@@ -379,7 +380,7 @@ export default function AdminDashboard() {
                         <Label>{t("admin.itemName")} (Kurdî)</Label>
                         <Input
                           name="titleKurdish"
-                          placeholder="ناوی خواردنی"
+                          placeholder="ناوی خواردنەوە"
                           className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800"
                           dir="rtl"
                         />
@@ -406,10 +407,10 @@ export default function AdminDashboard() {
                         <div className="flex items-center gap-3">
                           <label
                             htmlFor="add-image-input"
-                            className="flex-1 flex items-center justify-center gap-2 p-4 border border-dashed border-slate-300 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-900 cursor-pointer hover:border-orange-500 transition"
+                            className="flex-1 flex items-center justify-center gap-2 p-4 border border-dashed border-slate-300 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-900 cursor-pointer hover:border-amber-600 transition"
                           >
-                            <Upload size={18} className="text-orange-500" />
-                            <span className="text-sm font-semibold text-orange-600">{uploadingImage ? t("admin.uploading") : t("admin.clickToUpload")}</span>
+                            <Upload size={18} className="text-amber-600" />
+                            <span className="text-sm font-semibold text-amber-600">{uploadingImage ? t("admin.uploading") : t("admin.clickToUpload")}</span>
                           </label>
                           <input
                             type="file"
@@ -444,7 +445,7 @@ export default function AdminDashboard() {
                         <Textarea
                           name="descriptionKurdish"
                           rows={3}
-                          placeholder="تێبینی خواردنی"
+                          placeholder=" وەسفی خواردنەوە بکە بە زمانی کوردی"
                           className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800"
                           dir="rtl"
                         />
@@ -470,7 +471,7 @@ export default function AdminDashboard() {
                       </div>
 
                       <div className="md:col-span-2 flex flex-col md:flex-row gap-3">
-                        <Button type="submit" className="flex-1 gap-2 bg-orange-600 hover:bg-orange-700 text-white">
+                        <Button type="submit" className="flex-1 gap-2 bg-amber-600 hover:bg-amber-600 text-white">
                           <Plus size={18} />
                           {t("admin.addItem")}
                         </Button>
@@ -559,10 +560,10 @@ export default function AdminDashboard() {
                         <div className="flex items-center gap-3">
                           <label
                             htmlFor="edit-image-input"
-                            className="flex-1 flex items-center justify-center gap-2 p-4 border border-dashed border-slate-300 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-900 cursor-pointer hover:border-orange-500 transition"
+                            className="flex-1 flex items-center justify-center gap-2 p-4 border border-dashed border-slate-300 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-900 cursor-pointer hover:border-amber-600 transition"
                           >
-                            <Upload size={18} className="text-orange-500" />
-                            <span className="text-sm font-semibold text-orange-600">{uploadingImage ? t("admin.uploading") : t("admin.clickToChange")}</span>
+                            <Upload size={18} className="text-amber-600" />
+                            <span className="text-sm font-semibold text-amber-600">{uploadingImage ? t("admin.uploading") : t("admin.clickToChange")}</span>
                           </label>
                           <input
                             type="file"
@@ -622,7 +623,7 @@ export default function AdminDashboard() {
                       </div>
 
                       <div className="md:col-span-2 flex flex-col md:flex-row gap-3">
-                        <Button type="submit" className="flex-1 gap-2 bg-orange-600 hover:bg-orange-700 text-white">
+                        <Button type="submit" className="flex-1 gap-2 bg-amber-600 hover:bg-amber-600 text-white">
                           <Edit size={18} />
                           {t("admin.saveChanges")}
                         </Button>
@@ -647,7 +648,7 @@ export default function AdminDashboard() {
               )}
 
               {isLoading ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-8">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 py-8">
                   {Array.from({ length: 6 }).map((_, idx) => (
                     <div
                       key={idx}
@@ -670,88 +671,64 @@ export default function AdminDashboard() {
                   ))}
                 </div>
               ) : filteredItems.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-5">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {filteredItems.map((item) => (
                     <Card
                       key={item.id}
-                      className="h-full flex flex-col overflow-hidden border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-sm"
+                      className="overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md transition-all"
                     >
-                      <div className="relative h-48 bg-slate-100 dark:bg-slate-900 overflow-hidden">
+                      {/* Image */}
+                      <div className="relative h-28 bg-slate-100 dark:bg-slate-800 overflow-hidden">
                         <img
                           src={item.imageUrl || "https://via.placeholder.com/400x300?text=No+Image"}
                           alt={item.title}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-cover"
                           onError={(e) => {
                             const img = e.target as HTMLImageElement;
                             img.src = "https://via.placeholder.com/400x300?text=No+Image";
                           }}
                         />
-                        <div className="absolute top-3 right-3">
-                          <Badge className="bg-orange-500/90 text-white border-0">
+                        <div className="absolute top-1.5 right-1.5">
+                          <Badge className="bg-amber-600 text-white border-0 text-[10px]">
                             {categoryLabel(item.category)}
                           </Badge>
                         </div>
                       </div>
-                      <CardContent className="p-4 space-y-3 flex-1 flex flex-col">
-                        <div className="space-y-1">
-                          <h3 className="text-lg font-semibold line-clamp-2">{item.title}</h3>
-                          <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-3">{item.description || t("admin.noDescription")}</p>
-                        </div>
-
-                        <div className="flex items-center justify-between">
-                          <span className="text-xl font-bold text-orange-600">
-                            {item.price?.toLocaleString()} IQD
-                          </span>
-                        </div>
-
-                        <div className="flex gap-2 mt-auto">
+                      
+                      {/* Content */}
+                      <div className="p-2.5">
+                        <h3 className="text-sm font-bold text-slate-900 dark:text-slate-50 line-clamp-1 mb-1">{item.title}</h3>
+                        <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-1 mb-2">{item.price?.toLocaleString()} IQD</p>
+                        
+                        {/* Action Buttons */}
+                        <div className="flex gap-1.5">
                           <Button
-                            variant="outline"
-                            className="flex-1 gap-2 border-slate-200 dark:border-slate-800"
+                            size="sm"
+                            className="flex-1 h-8 bg-blue-600 hover:bg-blue-700 text-white text-xs gap-1 p-1.5"
                             onClick={() => handleEditMenuItem(item)}
                           >
-                            <Edit size={16} />
-                            {t("admin.edit")}
+                            <Edit size={14} />
+                            <span className="hidden sm:inline">{t("admin.edit")}</span>
                           </Button>
                           <Button
+                            size="sm"
                             variant="destructive"
-                            className="flex-1 gap-2"
+                            className="flex-1 h-8 text-xs gap-1 p-1.5"
                             onClick={() => setDeleteConfirm(item.id)}
                           >
-                            <Trash2 size={16} />
-                            {t("admin.delete")}
+                            <Trash2 size={14} />
+                            <span className="hidden sm:inline">{t("admin.delete")}</span>
                           </Button>
                         </div>
 
-                        {deleteConfirm === item.id && (
-                          <div className="rounded-lg border border-red-200 dark:border-red-900/40 bg-red-50 dark:bg-red-900/30 p-4 space-y-3">
-                            <p className="text-sm font-semibold text-red-700 dark:text-red-100">{t("admin.deleteThisItem")}</p>
-                            <div className="flex gap-2">
-                              <Button
-                                variant="destructive"
-                                className="flex-1"
-                                onClick={() => handleDeleteMenuItem(item.id)}
-                              >
-                                {t("admin.yesDelete")}
-                              </Button>
-                              <Button
-                                variant="secondary"
-                                className="flex-1"
-                                onClick={() => setDeleteConfirm(null)}
-                              >
-                                {t("admin.cancel")}
-                              </Button>
-                            </div>
-                          </div>
-                        )}
-                      </CardContent>
+                      </div>
                     </Card>
                   ))}
                 </div>
               ) : (
                 <Card className="border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
                   <CardContent className="py-12 text-center space-y-3 text-slate-500 dark:text-slate-400">
-                    <AlertCircle className="mx-auto text-orange-500" size={32} />
+                    <AlertCircle className="mx-auto text-amber-600" size={32} />
                     <p className="text-base font-semibold">{t("admin.noItemsFound")}</p>
                     <p className="text-sm">{t("admin.noItemsFoundHint")}</p>
                   </CardContent>
@@ -761,6 +738,38 @@ export default function AdminDashboard() {
           </Card>
         </div>
       </div>
+
+      {/* Delete Confirmation Modal */}
+      <Dialog open={!!deleteConfirm} onOpenChange={(open) => !open && setDeleteConfirm(null)}>
+        <DialogContent className="max-w-sm">
+          <DialogTitle className="text-center text-xl font-bold text-red-600">
+            {t("admin.deleteThisItem")}
+          </DialogTitle>
+         
+          
+          <div className="flex gap-3 mt-6">
+            <Button
+              variant="secondary"
+              className="flex-1"
+              onClick={() => setDeleteConfirm(null)}
+            >
+              {t("admin.cancel")}
+            </Button>
+            <Button
+              variant="destructive"
+              className="flex-1"
+              onClick={() => {
+                if (deleteConfirm) {
+                  handleDeleteMenuItem(deleteConfirm);
+                  setDeleteConfirm(null);
+                }
+              }}
+            >
+              {t("admin.yesDelete")}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

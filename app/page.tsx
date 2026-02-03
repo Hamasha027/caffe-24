@@ -545,7 +545,7 @@ export default function HomePage() {
             href="https://www.facebook.com/mahamad.khdir.104" 
             target="_blank" 
             rel="noreferrer"
-            className="font-semibold text-gray-800 dark:text-slate-100 underline flex items-center gap-2 hover:text-amber-700 dark:hover:text-amber-300 transition"
+            className="font-semibold text-gray-800 dark:text-slate-100 underline flex items-center hover:text-amber-700 dark:hover:text-amber-300 transition"
           >
                <Facebook size={16} />
                Hama Sha

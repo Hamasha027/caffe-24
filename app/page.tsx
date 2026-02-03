@@ -1,6 +1,6 @@
 'use client';
 import Link from "next/link";
-import { Search, Coffee, CupSoda, Layers, Moon, Sun, Facebook, X, Phone, MapPin, Clock, IceCream, Droplets, Candy, Flame, Wine } from "lucide-react";
+import { Search, Coffee, CupSoda, Layers, Moon, Sun, Facebook, X, Phone, MapPin, Clock, IceCream, Droplets, Candy, Flame, Wine, ArrowUp } from "lucide-react";
 import { useMemo, useState, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 import { Input } from "@/components/ui/input";
@@ -32,6 +32,7 @@ export default function HomePage() {
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const [mounted, setMounted] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const cardsTopRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -43,6 +44,20 @@ export default function HomePage() {
       localStorage.setItem('theme', 'dark');
     }
   }, [setTheme]);
+
+  // Handle scroll to top button visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const currencyLabel = lang === "ckb" ? "دینار" : "IQD";
 
@@ -552,6 +567,17 @@ export default function HomePage() {
             </a>
         </div>
       </footer>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 bg-amber-600 hover:bg-amber-700 text-white p-3 rounded-full shadow-lg transition transform hover:scale-110 animate-fade-in z-50"
+          aria-label="Scroll to top"
+        >
+          <ArrowUp size={24} />
+        </button>
+      )}
     </div>
   );
 }

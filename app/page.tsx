@@ -137,7 +137,7 @@ export default function HomePage() {
 
 
   
-  <div className="min-h-screen bg-linear-to-b from-white to-gray-50 dark:from-slate-950 dark:to-slate-900 text-slate-900 dark:text-slate-100">
+  <div className="min-h-screen flex flex-col bg-linear-to-b from-white to-gray-50 dark:from-slate-950 dark:to-slate-900 text-slate-900 dark:text-slate-100">
       <Celebration />
       <nav className="bg-white/90 dark:bg-slate-900/80 sm:backdrop-blur shadow-sm border-0">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -167,7 +167,7 @@ export default function HomePage() {
         </div>
       </nav>
 
-      <main className="max-w-7xl mx-auto px-6 py-5">
+      <main className="flex-1 max-w-7xl mx-auto px-6 py-5 w-full">
         {!loading && items.length > 0 ? (
           <>
             {/* Header Section */}
@@ -538,7 +538,7 @@ export default function HomePage() {
       </Dialog>
 
       {/* Footer */}
-      <footer className="mt-20 pb-1">
+      <footer className="text-xs   pb-1 w-full dark:bg-slate-900/50">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center">
             <p className="text-gray-500 dark:text-slate-400 text-sm font-light tracking-wide">Designed and Developed by</p>
           <a 

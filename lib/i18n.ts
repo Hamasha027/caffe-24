@@ -195,7 +195,7 @@ export const translations: Record<AppLang, Record<string, string>> = {
     "admin.successUpdated": "ماددەکە بە سەرکەوتوویی نوێکرایەوە",
     "admin.successDeleted": "ماددەکە بە سەرکەوتوویی سڕایەوە",
 
-    "admin.logout": "دەرچوون",
+    "admin.logout": "چوونەدەرەوە",
     "admin.dashboardTitle": "داشبۆردی ئەدمین",
     "contact.title": "تێپەڕاندنی زانیاری",
     "contact.phone1": "07515481228",

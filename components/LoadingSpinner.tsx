@@ -30,7 +30,7 @@ export default function LoadingSpinner() {
       <div className="flex flex-col items-center justify-center gap-4 relative z-10">
         
         {/* Modern Animated Orbs Spinner */}
-        <div className="relative w-28 h-28 flex items-center justify-center">
+        <div className="relative w-20 h-20 flex items-center justify-center">
           {/* Outer rotating orbit */}
           <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-gray-700 border-r-amber-600 animate-spin shadow-xl shadow-amber-600/20"
             style={{ animationDuration: '3s' }}
@@ -42,7 +42,7 @@ export default function LoadingSpinner() {
           />
           
           {/* Pulsing center orb */}
-          <div className="absolute w-12 h-12 rounded-full bg-gradient-to-br from-gray-800/60 to-amber-600/30 animate-pulse shadow-2xl shadow-amber-600/20"
+          <div className="absolute w-9 h-9 rounded-full bg-gradient-to-br from-gray-800/60 to-amber-600/30 animate-pulse shadow-2xl shadow-amber-600/20"
             style={{ animationDuration: '2s' }}
           />
           
@@ -51,9 +51,9 @@ export default function LoadingSpinner() {
             <Image 
               src="/image/2.png" 
               alt="Logo" 
-              width={36} 
-              height={36}
-              className="w-9 h-9 object-contain filter brightness-150 relative z-10"
+              width={28} 
+              height={28}
+              className="w-7 h-7 object-contain filter brightness-150 relative z-10"
               priority
               style={{
                 filter: 'drop-shadow(0 0 12px rgba(180, 83, 9, 0.7))'
@@ -64,29 +64,29 @@ export default function LoadingSpinner() {
 
         {/* Loading Text */}
         <div className="text-center mt-6">
-          <p className="text-2xl font-bold tracking-widest">
+          <p className="text-xl font-bold tracking-widest">
             <span className="bg-gradient-to-r from-gray-400 via-gray-300 to-amber-600 bg-clip-text text-transparent animate-pulse" style={{ animationDuration: '2s' }}>
               LOADING
             </span>
           </p>
           
           {/* Animated dots */}
-          <div className="flex items-center justify-center gap-3 mt-4">
-            <div className="w-3 h-3 rounded-full animate-bounce shadow-lg shadow-amber-600/30"
+          <div className="flex items-center justify-center gap-2 mt-4">
+            <div className="w-2.5 h-2.5 rounded-full animate-bounce shadow-lg shadow-amber-600/30"
               style={{
                 background: 'linear-gradient(135deg, #4b5563 0%, #b54509 100%)',
                 animationDelay: '0s',
                 animationDuration: '1.4s'
               }}
             />
-            <div className="w-3 h-3 rounded-full animate-bounce shadow-lg shadow-amber-600/30"
+            <div className="w-2.5 h-2.5 rounded-full animate-bounce shadow-lg shadow-amber-600/30"
               style={{
                 background: 'linear-gradient(135deg, #374151 0%, #b54509 100%)',
                 animationDelay: '0.2s',
                 animationDuration: '1.4s'
               }}
             />
-            <div className="w-3 h-3 rounded-full animate-bounce shadow-lg shadow-amber-600/30"
+            <div className="w-2.5 h-2.5 rounded-full animate-bounce shadow-lg shadow-amber-600/30"
               style={{
                 background: 'linear-gradient(135deg, #1f2937 0%, #b54509 100%)',
                 animationDelay: '0.4s',

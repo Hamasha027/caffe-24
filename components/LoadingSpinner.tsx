@@ -42,7 +42,7 @@ export default function LoadingSpinner() {
           />
           
           {/* Pulsing center orb */}
-          <div className="absolute w-9 h-9 rounded-full bg-gradient-to-br from-gray-800/60 to-amber-600/30 animate-pulse shadow-2xl shadow-amber-600/20"
+          <div className="absolute w-9 h-9 rounded-full bg-linear-to-br from-gray-800/60 to-amber-600/30 animate-pulse shadow-2xl shadow-amber-600/20"
             style={{ animationDuration: '2s' }}
           />
           
@@ -65,7 +65,7 @@ export default function LoadingSpinner() {
         {/* Loading Text */}
         <div className="text-center">
           <p className="text-lg font-bold tracking-widest mb-3">
-            <span className="bg-gradient-to-r from-amber-600 via-orange-500 to-amber-700 bg-clip-text text-transparent" style={{ 
+            <span className="bg-linear-to-r from-amber-600 via-orange-500 to-amber-700 bg-clip-text text-transparent" style={{ 
               animation: 'shimmer 2s infinite',
               backgroundSize: '200% 100%'
             }}>
@@ -73,7 +73,7 @@ export default function LoadingSpinner() {
             </span>
           </p>
           
-          {/* Animated dots - all together */}
+       
           <div className="flex items-center justify-center gap-1.5">
             <div className="w-2 h-2 rounded-full shadow-md shadow-amber-400/40 animate-bounce"
               style={{

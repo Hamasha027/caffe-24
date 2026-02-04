@@ -5,25 +5,25 @@ import Image from 'next/image';
 export default function LoadingSpinner() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-white relative overflow-hidden">
-      {/* Animated gradient background blobs */}
+    
       <div className="absolute inset-0 overflow-hidden">
-        {/* Top-left light blob */}
+   
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-gray-100/60 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '7s' }} />
         
-        {/* Top-right amber accent blob */}
+      
         <div className="absolute -top-32 -right-32 w-96 h-96 bg-amber-100/40 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s', animationDelay: '1s' }} />
         
-        {/* Bottom-left light blob */}
+    
         <div className="absolute -bottom-40 -left-32 w-96 h-96 bg-gray-100/60 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '9s', animationDelay: '2s' }} />
         
-        {/* Bottom-right subtle amber blob */}
+     
         <div className="absolute -bottom-32 -right-40 w-96 h-96 bg-amber-100/30 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '1.5s' }} />
       </div>
 
-      {/* Subtle grid overlay */}
+   
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(180,83,9,.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(180,83,9,.05)_1px,transparent_1px)] bg-size-[100px_100px] opacity-20" />
       
-      {/* Light vignette effect */}
+     
       <div className="absolute inset-0 bg-radial-gradient(circle at center, transparent 0%, rgba(255, 255, 255, 0.3) 100%)" />
 
       {/* Main Content */}

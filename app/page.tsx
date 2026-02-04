@@ -255,7 +255,7 @@ export default function HomePage() {
 
             {/* Menu Items Grid */}
             {filteredItems.length > 0 ? (
-              <div ref={cardsTopRef} className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
+              <div ref={cardsTopRef} className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
                 {filteredItems.map((item) => (
                   <div
                     key={item.id}

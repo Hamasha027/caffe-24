@@ -4,27 +4,27 @@ import Image from 'next/image';
 
 export default function LoadingSpinner() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-950 via-slate-950 to-black relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-white relative overflow-hidden">
       {/* Animated gradient background blobs */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Top-left dark blob */}
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-black/80 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '7s' }} />
+        {/* Top-left light blob */}
+        <div className="absolute -top-40 -left-40 w-96 h-96 bg-gray-100/60 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '7s' }} />
         
         {/* Top-right amber accent blob */}
-        <div className="absolute -top-32 -right-32 w-96 h-96 bg-amber-600/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s', animationDelay: '1s' }} />
+        <div className="absolute -top-32 -right-32 w-96 h-96 bg-amber-100/40 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s', animationDelay: '1s' }} />
         
-        {/* Bottom-left dark blob */}
-        <div className="absolute -bottom-40 -left-32 w-96 h-96 bg-black/80 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '9s', animationDelay: '2s' }} />
+        {/* Bottom-left light blob */}
+        <div className="absolute -bottom-40 -left-32 w-96 h-96 bg-gray-100/60 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '9s', animationDelay: '2s' }} />
         
         {/* Bottom-right subtle amber blob */}
-        <div className="absolute -bottom-32 -right-40 w-96 h-96 bg-amber-600/3 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '1.5s' }} />
+        <div className="absolute -bottom-32 -right-40 w-96 h-96 bg-amber-100/30 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '1.5s' }} />
       </div>
 
       {/* Subtle grid overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(180,83,9,.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(180,83,9,.02)_1px,transparent_1px)] bg-size-[100px_100px] opacity-30" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(180,83,9,.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(180,83,9,.05)_1px,transparent_1px)] bg-size-[100px_100px] opacity-20" />
       
-      {/* Vignette effect */}
-      <div className="absolute inset-0 bg-radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.6) 100%)" />
+      {/* Light vignette effect */}
+      <div className="absolute inset-0 bg-radial-gradient(circle at center, transparent 0%, rgba(255, 255, 255, 0.3) 100%)" />
 
       {/* Main Content */}
       <div className="flex flex-col items-center justify-center gap-4 relative z-10">
@@ -63,34 +63,37 @@ export default function LoadingSpinner() {
         </div>
 
         {/* Loading Text */}
-        <div className="text-center mt-6">
-          <p className="text-xl font-bold tracking-widest">
-            <span className="bg-gradient-to-r from-gray-400 via-gray-300 to-amber-600 bg-clip-text text-transparent animate-pulse" style={{ animationDuration: '2s' }}>
+        <div className="text-center">
+          <p className="text-lg font-bold tracking-widest mb-3">
+            <span className="bg-gradient-to-r from-amber-600 via-orange-500 to-amber-700 bg-clip-text text-transparent" style={{ 
+              animation: 'shimmer 2s infinite',
+              backgroundSize: '200% 100%'
+            }}>
               LOADING
             </span>
           </p>
           
-          {/* Animated dots */}
-          <div className="flex items-center justify-center gap-2 mt-4">
-            <div className="w-2.5 h-2.5 rounded-full animate-bounce shadow-lg shadow-amber-600/30"
+          {/* Animated dots - all together */}
+          <div className="flex items-center justify-center gap-1.5">
+            <div className="w-2 h-2 rounded-full shadow-md shadow-amber-400/40 animate-bounce"
               style={{
-                background: 'linear-gradient(135deg, #4b5563 0%, #b54509 100%)',
+                background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
                 animationDelay: '0s',
-                animationDuration: '1.4s'
+                animationDuration: '1.2s'
               }}
             />
-            <div className="w-2.5 h-2.5 rounded-full animate-bounce shadow-lg shadow-amber-600/30"
+            <div className="w-2 h-2 rounded-full shadow-md shadow-amber-400/40 animate-bounce"
               style={{
-                background: 'linear-gradient(135deg, #374151 0%, #b54509 100%)',
+                background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
                 animationDelay: '0.2s',
-                animationDuration: '1.4s'
+                animationDuration: '1.2s'
               }}
             />
-            <div className="w-2.5 h-2.5 rounded-full animate-bounce shadow-lg shadow-amber-600/30"
+            <div className="w-2 h-2 rounded-full shadow-md shadow-amber-400/40 animate-bounce"
               style={{
-                background: 'linear-gradient(135deg, #1f2937 0%, #b54509 100%)',
+                background: 'linear-gradient(135deg, #fcd34d 0%, #fbbf24 100%)',
                 animationDelay: '0.4s',
-                animationDuration: '1.4s'
+                animationDuration: '1.2s'
               }}
             />
           </div>

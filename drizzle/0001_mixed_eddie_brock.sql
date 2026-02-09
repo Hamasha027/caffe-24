@@ -1,0 +1,1 @@
+ALTER TABLE "menu_items" ADD COLUMN "category" varchar(50) DEFAULT 'drinks' NOT NULL;

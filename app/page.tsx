@@ -296,7 +296,7 @@ export default function HomePage() {
                           className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer relative"
                           onClick={() => openItem(item)}
                         >
-                          {/* Image */}
+                       
                           <img
                             src={item.imageUrl}
                             alt={item.title}
@@ -402,14 +402,11 @@ export default function HomePage() {
               </DialogClose>
 
               {/* Image */}
-              <div className="relative w-full h-[45vh] sm:h-[55vh] overflow-hidden bg-gray-50 dark:bg-slate-800">
-                <Image
+              <div className="w-full h-[45vh] sm:h-[55vh] overflow-hidden bg-gray-50 dark:bg-slate-800 flex items-center justify-center">
+                <img
                   src={selectedItem.imageUrl}
                   alt={selectedItem.title}
-                  fill
-                  className="object-contain"
-                  priority
-                  sizes="(max-width: 768px) 100vw, 90vw"
+                  className="w-full h-full object-contain"
                 />
               </div>
 

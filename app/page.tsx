@@ -124,6 +124,27 @@ export default function HomePage() {
     });
   }, [items, selectedCategory, searchTerm]);
 
+  // Group items by category
+  const groupedItems = useMemo(() => {
+    const groups: Record<string, MenuItem[]> = {};
+    
+    filteredItems.forEach((item) => {
+      const category = item.category || "coffee";
+      if (!groups[category]) {
+        groups[category] = [];
+      }
+      groups[category].push(item);
+    });
+    
+    return groups;
+  }, [filteredItems]);
+
+  // Get category name by ID
+  const getCategoryName = (categoryId: string) => {
+    const category = categories.find(cat => cat.id === categoryId);
+    return category ? category.name : categoryId;
+  };
+
   const formatCategoryName = (category: string) => {
     // Format category names with proper spacing
     const formatted = category
@@ -255,50 +276,63 @@ export default function HomePage() {
 
             {/* Menu Items Grid */}
             {filteredItems.length > 0 ? (
-              <div ref={cardsTopRef} className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-                {filteredItems.map((item) => (
-                  <div
-                    key={item.id}
-                    className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer relative"
-                    onClick={() => openItem(item)}
-                  >
-                    {/* Image */}
-                    <img
-                      className="rounded-t-xl w-full h-36 sm:h-44 md:h-52 object-cover hover:scale-105 transition-transform duration-300 bg-gray-200 dark:bg-slate-700"
-                      src={item.imageUrl}
-                      alt={item.title}
-                      loading="lazy"
-                      decoding="async"
-                      onError={(e) => {
-                        const img = e.target as HTMLImageElement;
-                        img.style.display = "none";
-                      }}
-                    />
-                    
-                    {/* Badge */}
-                    <div className="absolute top-3 right-3">
-                      <Badge className={getCategoryBadgeColor(item.category || "drinks")}>
-                        {formatCategoryName(item.category || "drinks")}
-                      </Badge>
+              <div ref={cardsTopRef} className="space-y-12">
+                {Object.entries(groupedItems).map(([categoryId, categoryItems]) => (
+                  <div key={categoryId} className="space-y-6">
+                    {/* Category Header */}
+                    <div className="flex items-center gap-3 pt-2 pb-1">
+                      <div className="h-px flex-1 bg-linear-to-r from-transparent via-amber-400 dark:via-amber-500 to-transparent"></div>
+                      <h2 className="text-base md:text-lg font-bold text-gray-800 dark:text-white whitespace-nowrap px-2">
+                        {getCategoryName(categoryId)}
+                      </h2>
+                      <div className="h-px flex-1 bg-linear-to-r from-transparent via-amber-400 dark:via-amber-500 to-transparent"></div>
                     </div>
 
-                    {/* Content */}
-                    <div className="relative pr-2 pl-2 p-4 sm:p-5">
-                      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 rounded-b-xl  dark:from-slate-950/35 dark:via-slate-950/10" />
+                    {/* Items Grid */}
+                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+                      {categoryItems.map((item, index) => (
+                        <div
+                          key={item.id}
+                          className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer relative"
+                          onClick={() => openItem(item)}
+                        >
+                          {/* Image */}
+                          <img
+                            src={item.imageUrl}
+                            alt={item.title}
+                            className="w-full h-36 sm:h-44 md:h-52 object-cover hover:scale-105 transition-transform duration-300 bg-gray-200 dark:bg-slate-700 rounded-t-xl"
+                            loading="lazy"
+                            decoding="async"
+                            sizes="(max-width: 640px) 50vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                          />
+                          
+                          {/* Badge */}
+                          <div className="absolute top-3 right-3">
+                            <Badge className={getCategoryBadgeColor(item.category || "drinks")}>
+                              {formatCategoryName(item.category || "drinks")}
+                            </Badge>
+                          </div>
 
-                      <div className="relative z-10">
-                        <p className="text-gray-700 dark:text-slate-300 line-clamp-2 text-xs sm:text-sm leading-relaxed mb-3" dir={lang === "ckb" ? "rtl" : "ltr"}>
-                          {lang === "ckb" ? (item.descriptionKurdish || item.description || "No description available") : (item.description || "No description available")}
-                        </p>
-                        <div className="flex items-center justify-between gap-2">
-                          <h5 className={`flex-1 min-w-0 text-sm sm:text-base font-semibold tracking-wide text-gray-900 dark:text-slate-50 truncate`} dir={lang === "ckb" ? "rtl" : "ltr"}>
-                            {lang === "ckb" ? (item.titleKurdish || item.title) : item.title}
-                          </h5>
-                          <span className="rounded-full bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-100 text-xs sm:text-sm font-bold whitespace-nowrap px-0.5 shrink-0">
-                            {item.price?.toLocaleString()} {currencyLabel}
-                          </span>
+                          {/* Content */}
+                          <div className="relative pr-2 pl-2 p-4 sm:p-5">
+                            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 rounded-b-xl  dark:from-slate-950/35 dark:via-slate-950/10" />
+
+                            <div className="relative z-10">
+                              <p className="text-gray-700 dark:text-slate-300 line-clamp-2 text-xs sm:text-sm leading-relaxed mb-3" dir={lang === "ckb" ? "rtl" : "ltr"}>
+                                {lang === "ckb" ? (item.descriptionKurdish || item.description || "No description available") : (item.description || "No description available")}
+                              </p>
+                              <div className="flex items-center justify-between gap-2">
+                                <h5 className={`flex-1 min-w-0 text-sm sm:text-base font-semibold tracking-wide text-gray-900 dark:text-slate-50 truncate`} dir={lang === "ckb" ? "rtl" : "ltr"}>
+                                  {lang === "ckb" ? (item.titleKurdish || item.title) : item.title}
+                                </h5>
+                                <span className="rounded-full bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-100 text-xs sm:text-sm font-bold whitespace-nowrap px-0.5 shrink-0">
+                                  {item.price?.toLocaleString()} {currencyLabel}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 ))}
@@ -369,15 +403,13 @@ export default function HomePage() {
 
               {/* Image */}
               <div className="relative w-full h-[45vh] sm:h-[55vh] overflow-hidden bg-gray-50 dark:bg-slate-800">
-                <img
+                <Image
                   src={selectedItem.imageUrl}
                   alt={selectedItem.title}
-                  className="w-full h-full object-contain bg-gray-200 dark:bg-slate-700"
-                  decoding="async"
-                  onError={(e) => {
-                    const img = e.target as HTMLImageElement;
-                    img.style.display = "none";
-                  }}
+                  fill
+                  className="object-contain"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 90vw"
                 />
               </div>
 

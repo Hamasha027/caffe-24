@@ -125,10 +125,10 @@ export const translations: Record<AppLang, Record<string, string>> = {
     "home.goAdmin": "چوون بۆ داشبۆردی ئەدمین",
 
     "categories.all": "هەموو",
-    "categories.icecoffee": "ئایس کؤفی",
+    "categories.icecoffee": "ئایس کۆفی ",
     "categories.mexican": "مەکسیکی",
     "categories.freshdrinks": " فرێشەکان",
-    "categories.milkshake": "میلک شەیک",
+    "categories.milkshake": "میڵک شەیک",
     "categories.syrup": "سیرەب",
     "categories.sweets": "شیرینی",
     "categories.hotdrinks": "خواردنەوەی گەرم",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, FormEvent, useEffect, useRef } from "react";
-import { Plus, Trash2, Edit, Search, LogOut, X, Upload, AlertCircle } from "lucide-react";
+import { Plus, Trash2, Edit, Search, LogOut, X, Upload, AlertCircle, Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useI18n } from "@/components/language-provider";
@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogClose, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { compressImage, validateImageFile } from "@/lib/imageCompression";
 
 interface MenuItem {
   id: number;
@@ -61,6 +62,7 @@ export default function AdminDashboard() {
   const [isEditing, setIsEditing] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [compressingImage, setCompressingImage] = useState(false);
   const [imageError, setImageError] = useState("");
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [editingItem, setEditingItem] = useState<MenuItem | null>(null);
@@ -123,12 +125,25 @@ export default function AdminDashboard() {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    setUploadingImage(true);
+    // Validate file before compression
+    const validation = validateImageFile(file);
+    if (!validation.isValid) {
+      setImageError(validation.error || t("admin.errUploadFailed"));
+      return;
+    }
+
+    setCompressingImage(true);
     setImageError("");
 
     try {
+      // Step 1: Compress the image on the client
+      const compressedFile = await compressImage(file);
+      console.log(`Image compression: ${(file.size / 1024 / 1024).toFixed(2)}MB → ${(compressedFile.size / 1024 / 1024).toFixed(2)}MB`);
+
+      // Step 2: Upload compressed image
+      setUploadingImage(true);
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", compressedFile);
 
       const response = await fetch("/api/upload", {
         method: "POST",
@@ -160,6 +175,7 @@ export default function AdminDashboard() {
       console.error("Upload error:", error);
       setImageError(error instanceof Error ? error.message : t("admin.errUploadFailed"));
     } finally {
+      setCompressingImage(false);
       setUploadingImage(false);
     }
   };
@@ -409,14 +425,28 @@ export default function AdminDashboard() {
                             htmlFor="add-image-input"
                             className="flex-1 flex items-center justify-center gap-2 p-4 border border-dashed border-slate-300 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-900 cursor-pointer hover:border-amber-600 transition"
                           >
-                            <Upload size={18} className="text-amber-600" />
-                            <span className="text-sm font-semibold text-amber-600">{uploadingImage ? t("admin.uploading") : t("admin.clickToUpload")}</span>
+                            {compressingImage ? (
+                              <>
+                                <Loader size={18} className="text-amber-600 animate-spin" />
+                                <span className="text-sm font-semibold text-amber-600">{t("admin.compressing")}</span>
+                              </>
+                            ) : uploadingImage ? (
+                              <>
+                                <Upload size={18} className="text-amber-600 animate-pulse" />
+                                <span className="text-sm font-semibold text-amber-600">{t("admin.uploading")}</span>
+                              </>
+                            ) : (
+                              <>
+                                <Upload size={18} className="text-amber-600" />
+                                <span className="text-sm font-semibold text-amber-600">{t("admin.clickToUpload")}</span>
+                              </>
+                            )}
                           </label>
                           <input
                             type="file"
                             accept=".jpg,.jpeg,.png,.gif,.webp,.svg"
                             onChange={(e) => handleImageUpload(e)}
-                            disabled={uploadingImage}
+                            disabled={uploadingImage || compressingImage}
                             className="hidden"
                             id="add-image-input"
                           />
@@ -562,14 +592,28 @@ export default function AdminDashboard() {
                             htmlFor="edit-image-input"
                             className="flex-1 flex items-center justify-center gap-2 p-4 border border-dashed border-slate-300 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-900 cursor-pointer hover:border-amber-600 transition"
                           >
-                            <Upload size={18} className="text-amber-600" />
-                            <span className="text-sm font-semibold text-amber-600">{uploadingImage ? t("admin.uploading") : t("admin.clickToChange")}</span>
+                            {compressingImage ? (
+                              <>
+                                <Loader size={18} className="text-amber-600 animate-spin" />
+                                <span className="text-sm font-semibold text-amber-600">{t("admin.compressing")}</span>
+                              </>
+                            ) : uploadingImage ? (
+                              <>
+                                <Upload size={18} className="text-amber-600 animate-pulse" />
+                                <span className="text-sm font-semibold text-amber-600">{t("admin.uploading")}</span>
+                              </>
+                            ) : (
+                              <>
+                                <Upload size={18} className="text-amber-600" />
+                                <span className="text-sm font-semibold text-amber-600">{t("admin.clickToChange")}</span>
+                              </>
+                            )}
                           </label>
                           <input
                             type="file"
                             accept=".jpg,.jpeg,.png,.gif,.webp,.svg"
                             onChange={(e) => handleImageUpload(e, true)}
-                            disabled={uploadingImage}
+                            disabled={uploadingImage || compressingImage}
                             className="hidden"
                             id="edit-image-input"
                           />

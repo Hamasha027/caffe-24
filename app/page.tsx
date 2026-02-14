@@ -30,6 +30,7 @@ import { LanguageButton } from "@/components/language-fab";
 import Image from "next/image";
 import Celebration from "@/components/Celebration";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import { AnimatedCard } from "@/components/AnimatedCard";
 
 interface MenuItem {
   id: number;
@@ -360,65 +361,66 @@ export default function HomePage() {
                       {/* Items Grid */}
                       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
                         {categoryItems.map((item, index) => (
-                          <div
-                            key={item.id}
-                            className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer relative"
-                            onClick={() => openItem(item)}
-                          >
-                            <div className="relative w-full h-36 sm:h-44 md:h-52 overflow-hidden rounded-t-xl">
-                              <Image
-                                src={item.imageUrl}
-                                alt={item.title}
-                                fill
-                                sizes="(max-width: 640px) 50vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                                className="object-cover hover:scale-105 transition-transform duration-300 bg-gray-200 dark:bg-slate-700"
-                              />
-                            </div>
+                          <AnimatedCard key={item.id} index={index}>
+                            <div
+                              className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer relative h-full"
+                              onClick={() => openItem(item)}
+                            >
+                              <div className="relative w-full h-36 sm:h-44 md:h-52 overflow-hidden rounded-t-xl">
+                                <Image
+                                  src={item.imageUrl}
+                                  alt={item.title}
+                                  fill
+                                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                                  className="object-cover hover:scale-105 transition-transform duration-300 bg-gray-200 dark:bg-slate-700"
+                                />
+                              </div>
 
-                            {/* Badge */}
-                            <div className="absolute top-3 right-3">
-                              <Badge
-                                className={getCategoryBadgeColor(
-                                  item.category || "drinks",
-                                )}
-                              >
-                                {formatCategoryName(item.category || "drinks")}
-                              </Badge>
-                            </div>
-
-                            {/* Content */}
-                            <div className="relative pr-2 pl-2 p-4 sm:p-5">
-                              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 rounded-b-xl  dark:from-slate-950/35 dark:via-slate-950/10" />
-
-                              <div className="relative z-10">
-                                <p
-                                  className="text-gray-700 dark:text-slate-300 line-clamp-2 text-xs sm:text-sm leading-relaxed mb-3"
-                                  dir={lang === "ckb" ? "rtl" : "ltr"}
+                              {/* Badge */}
+                              <div className="absolute top-3 right-3">
+                                <Badge
+                                  className={getCategoryBadgeColor(
+                                    item.category || "drinks",
+                                  )}
                                 >
-                                  {lang === "ckb"
-                                    ? item.descriptionKurdish ||
-                                      item.description ||
-                                      "No description available"
-                                    : item.description ||
-                                      "No description available"}
-                                </p>
-                                <div className="flex items-center justify-between gap-2">
-                                  <h5
-                                    className={`flex-1 min-w-0 text-sm sm:text-base font-semibold tracking-wide text-gray-900 dark:text-slate-50 truncate`}
+                                  {formatCategoryName(item.category || "drinks")}
+                                </Badge>
+                              </div>
+
+                              {/* Content */}
+                              <div className="relative pr-2 pl-2 p-4 sm:p-5">
+                                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 rounded-b-xl  dark:from-slate-950/35 dark:via-slate-950/10" />
+
+                                <div className="relative z-10">
+                                  <p
+                                    className="text-gray-700 dark:text-slate-300 line-clamp-2 text-xs sm:text-sm leading-relaxed mb-3"
                                     dir={lang === "ckb" ? "rtl" : "ltr"}
                                   >
                                     {lang === "ckb"
-                                      ? item.titleKurdish || item.title
-                                      : item.title}
-                                  </h5>
-                                  <span className="rounded-full bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-100 text-xs sm:text-sm font-bold whitespace-nowrap px-0.5 shrink-0">
-                                    {item.price?.toLocaleString()}{" "}
-                                    {currencyLabel}
-                                  </span>
+                                      ? item.descriptionKurdish ||
+                                        item.description ||
+                                        "No description available"
+                                      : item.description ||
+                                        "No description available"}
+                                  </p>
+                                  <div className="flex items-center justify-between gap-2">
+                                    <h5
+                                      className={`flex-1 min-w-0 text-sm sm:text-base font-semibold tracking-wide text-gray-900 dark:text-slate-50 truncate`}
+                                      dir={lang === "ckb" ? "rtl" : "ltr"}
+                                    >
+                                      {lang === "ckb"
+                                        ? item.titleKurdish || item.title
+                                        : item.title}
+                                    </h5>
+                                    <span className="rounded-full bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-100 text-xs sm:text-sm font-bold whitespace-nowrap px-0.5 shrink-0">
+                                      {item.price?.toLocaleString()}{" "}
+                                      {currencyLabel}
+                                    </span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
+                          </AnimatedCard>
                         ))}
                       </div>
                     </div>

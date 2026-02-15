@@ -30,7 +30,7 @@ export default function LoadingSpinner() {
       <div className="flex flex-col items-center justify-center gap-4 relative z-10">
         
         {/* Modern Animated Orbs Spinner */}
-        <div className="relative w-20 h-20 flex items-center justify-center">
+        <div className="relative w-16 h-16 flex items-center justify-center">
           {/* Outer rotating orbit */}
           <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-gray-700 border-r-amber-600 animate-spin shadow-xl shadow-amber-600/20"
             style={{ animationDuration: '3s' }}
@@ -42,7 +42,7 @@ export default function LoadingSpinner() {
           />
           
           {/* Pulsing center orb */}
-          <div className="absolute w-9 h-9 rounded-full bg-linear-to-br from-gray-800/60 to-amber-600/30 animate-pulse shadow-2xl shadow-amber-600/20"
+          <div className="absolute w-7 h-7 rounded-full bg-linear-to-br from-gray-800/60 to-amber-600/30 animate-pulse shadow-2xl shadow-amber-600/20"
             style={{ animationDuration: '2s' }}
           />
           
@@ -69,7 +69,7 @@ export default function LoadingSpinner() {
               animation: 'shimmer 2s infinite',
               backgroundSize: '200% 100%'
             }}>
-              LOADING
+              Loading
             </span>
           </p>
           

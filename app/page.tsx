@@ -4,8 +4,6 @@ import {
   Search,
   Coffee,
   Layers,
-  Moon,
-  Sun,
   Facebook,
   X,
   Phone,
@@ -21,7 +19,6 @@ import {
   Citrus,
 } from "lucide-react";
 import { useMemo, useState, useEffect, useRef } from "react";
-import { useTheme } from "next-themes";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogClose, DialogContent } from "@/components/ui/dialog";
@@ -44,7 +41,6 @@ interface MenuItem {
 }
 
 export default function HomePage() {
-  const { theme, setTheme } = useTheme();
   const { t, lang } = useI18n();
   const [items, setItems] = useState<MenuItem[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -57,14 +53,8 @@ export default function HomePage() {
   const cardsTopRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    // Set dark as default theme on first load
-    const savedTheme = localStorage.getItem("theme");
-    if (!savedTheme) {
-      setTheme("dark");
-      localStorage.setItem("theme", "dark");
-    }
     setMounted(true);
-  }, [setTheme]);
+  }, []);
 
   // Handle scroll to top button visibility
   useEffect(() => {
@@ -184,49 +174,18 @@ export default function HomePage() {
   };
 
   const getCategoryBadgeColor = (category: string) => {
-    const colors: Record<string, { light: string; dark: string }> = {
-      icecoffee: {
-        light: "bg-cyan-100 text-cyan-800",
-        dark: "dark:bg-cyan-900/40 dark:text-cyan-100",
-      },
-      mexican: {
-        light: "bg-yellow-100 text-yellow-800",
-        dark: "dark:bg-yellow-900/40 dark:text-yellow-100",
-      },
-      freshdrinks: {
-        light: "bg-blue-100 text-blue-800",
-        dark: "dark:bg-blue-900/40 dark:text-blue-100",
-      },
-      milkshake: {
-        light: "bg-pink-100 text-pink-800",
-        dark: "dark:bg-pink-900/40 dark:text-pink-100",
-      },
-      syrup: {
-        light: "bg-purple-100 text-purple-800",
-        dark: "dark:bg-purple-900/40 dark:text-purple-100",
-      },
-      sweets: {
-        light: "bg-rose-100 text-rose-800",
-        dark: "dark:bg-rose-900/40 dark:text-rose-100",
-      },
-      hotdrinks: {
-        light: "bg-amber-100 text-amber-800",
-        dark: "dark:bg-amber-900/40 dark:text-amber-100",
-      },
-      coffee: {
-        light: "bg-amber-100 text-amber-800",
-        dark: "dark:bg-amber-900/40 dark:text-amber-100",
-      },
-      drinks: {
-        light: "bg-blue-100 text-blue-800",
-        dark: "dark:bg-blue-900/40 dark:text-blue-100",
-      },
+    const colors: Record<string, string> = {
+      icecoffee: "bg-cyan-100 text-cyan-800",
+      mexican: "bg-yellow-100 text-yellow-800",
+      freshdrinks: "bg-blue-100 text-blue-800",
+      milkshake: "bg-pink-100 text-pink-800",
+      syrup: "bg-purple-100 text-purple-800",
+      sweets: "bg-rose-100 text-rose-800",
+      hotdrinks: "bg-amber-100 text-amber-800",
+      coffee: "bg-amber-100 text-amber-800",
+      drinks: "bg-blue-100 text-blue-800",
     };
-    const categoryColors = colors[category] || {
-      light: "bg-gray-100 text-gray-800",
-      dark: "dark:bg-gray-900/40 dark:text-gray-100",
-    };
-    return `${categoryColors.light} ${categoryColors.dark}`;
+    return colors[category] || "bg-gray-100 text-gray-800";
   };
 
   // Show loading spinner while fetching data
@@ -235,35 +194,23 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-linear-to-b from-white to-gray-50 dark:from-slate-950 dark:to-slate-900 text-slate-900 dark:text-slate-100">
+    <div className="min-h-screen flex flex-col bg-linear-to-b from-white to-gray-50 text-slate-900">
       <Celebration />
-      <nav className="bg-white/90 dark:bg-slate-900/80 sm:backdrop-blur shadow-sm border-0">
+      <nav className="bg-white/90 sm:backdrop-blur shadow-sm border-0">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Image src="/image/2.png" alt="Logo" width={48} height={48} />
           </div>
           <div className="flex items-center gap-2">
-            <LanguageButton className="inline-flex items-center gap-2 px-2.5 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-[12px] font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition" />
+            <LanguageButton className="inline-flex items-center gap-2 px-2.5 py-2 rounded-lg border border-slate-200 text-[12px] font-semibold text-slate-700 hover:bg-slate-50 transition" />
             <button
               onClick={() => setShowAbout(true)}
-              className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition"
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-200 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
               aria-label="Contact us"
               title="Contact information"
             >
               <Phone size={16} />
               <span className="hidden sm:inline">Contact</span>
-            </button>
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition"
-              aria-label={t("theme.toggle")}
-            >
-              {mounted &&
-                (theme === "dark" ? <Sun size={16} /> : <Moon size={16} />)}
-              <span>
-                {mounted &&
-                  (theme === "dark" ? t("theme.light") : t("theme.dark"))}
-              </span>
             </button>
           </div>
         </div>
@@ -291,7 +238,7 @@ export default function HomePage() {
                 )}
               </h1>
               <p
-                className="text-gray-600 dark:text-slate-300 text-sm animate-in fade-in slide-in-from-bottom-4 duration-1000 ease-out"
+                className="text-gray-600 text-sm animate-in fade-in slide-in-from-bottom-4 duration-1000 ease-out"
                 style={{ animationDelay: "300ms" }}
               >
                 {t("home.subtitle")}
@@ -301,7 +248,7 @@ export default function HomePage() {
             {/* Category Filter */}
             <div className="mb-6 -mx-4 sm:mx-0">
               <div className="overflow-x-auto scrollbar-hide px-4 sm:px-0">
-                <div className="flex items-center gap-2 sm:gap-3 md:gap-4 min-w-max sm:min-w-0 sm:justify-center border-b border-gray-200 dark:border-slate-800 pb-2">
+                <div className="flex items-center gap-2 sm:gap-3 md:gap-4 min-w-max sm:min-w-0 sm:justify-center border-b border-gray-200 pb-2">
                   {categories.map((cat) => {
                     const Icon = cat.icon;
                     const active = selectedCategory === cat.id;
@@ -311,8 +258,8 @@ export default function HomePage() {
                         onClick={() => setSelectedCategory(cat.id)}
                         className={`flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5 px-3 py-2 sm:pb-2 sm:pt-0 rounded-lg sm:rounded-none text-xs sm:text-base lg:text-lg font-semibold transition whitespace-nowrap border-b-2 sm:border-b-2 ${
                           active
-                            ? "border-amber-600 text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/30 sm:bg-transparent"
-                            : "border-transparent text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-slate-800 sm:hover:bg-transparent hover:border-gray-300 dark:hover:border-slate-600"
+                            ? "border-amber-600 text-amber-700 bg-amber-50 sm:bg-transparent"
+                            : "border-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-100 sm:hover:bg-transparent hover:border-gray-300"
                         }`}
                       >
                         <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -330,7 +277,7 @@ export default function HomePage() {
             <div className="mb-8 flex flex-col items-center">
               <div className="relative w-full max-w-2xl">
                 <Search
-                  className="absolute left-3 top-3 text-gray-400 dark:text-slate-500"
+                  className="absolute left-3 top-3 text-gray-400"
                   size={20}
                 />
                 <Input
@@ -338,7 +285,7 @@ export default function HomePage() {
                   placeholder={t("home.searchPlaceholder")}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 h-12 text-base sm:text-sm bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 text-gray-900 dark:text-slate-100 placeholder:text-gray-500 dark:placeholder:text-slate-400"
+                  className="pl-10 h-12 text-base sm:text-sm bg-white border border-gray-300 text-gray-900 placeholder:text-gray-500"
                 />
               </div>
             </div>
@@ -351,11 +298,11 @@ export default function HomePage() {
                     <div key={categoryId} className="space-y-6">
                       {/* Category Header */}
                       <div className="flex items-center gap-3 pt-2 pb-1">
-                        <div className="h-px flex-1 bg-linear-to-r from-transparent via-amber-400 dark:via-amber-500 to-transparent"></div>
-                        <h2 className="text-base md:text-lg font-bold text-gray-800 dark:text-white whitespace-nowrap px-2">
+                        <div className="h-px flex-1 bg-linear-to-r from-transparent via-amber-400 to-transparent"></div>
+                        <h2 className="text-base md:text-lg font-bold text-gray-800 whitespace-nowrap px-2">
                           {getCategoryName(categoryId)}
                         </h2>
-                        <div className="h-px flex-1 bg-linear-to-r from-transparent via-amber-400 dark:via-amber-500 to-transparent"></div>
+                        <div className="h-px flex-1 bg-linear-to-r from-transparent via-amber-400 to-transparent"></div>
                       </div>
 
                       {/* Items Grid */}
@@ -363,7 +310,7 @@ export default function HomePage() {
                         {categoryItems.map((item, index) => (
                           <AnimatedCard key={item.id} index={index}>
                             <div
-                              className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer relative h-full"
+                              className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer relative h-full"
                               onClick={() => openItem(item)}
                             >
                               <div className="relative w-full h-36 sm:h-44 md:h-52 overflow-hidden rounded-t-xl">
@@ -372,7 +319,7 @@ export default function HomePage() {
                                   alt={item.title}
                                   fill
                                   sizes="(max-width: 640px) 50vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                                  className="object-cover hover:scale-105 transition-transform duration-300 bg-gray-200 dark:bg-slate-700"
+                                  className="object-cover hover:scale-105 transition-transform duration-300 bg-gray-200"
                                 />
                               </div>
 
@@ -389,11 +336,11 @@ export default function HomePage() {
 
                               {/* Content */}
                               <div className="relative pr-2 pl-2 p-4 sm:p-5">
-                                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 rounded-b-xl  dark:from-slate-950/35 dark:via-slate-950/10" />
+                                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 rounded-b-xl" />
 
                                 <div className="relative z-10">
                                   <p
-                                    className="text-gray-700 dark:text-slate-300 line-clamp-2 text-xs sm:text-sm leading-relaxed mb-3"
+                                    className="text-gray-700 line-clamp-2 text-xs sm:text-sm leading-relaxed mb-3"
                                     dir={lang === "ckb" ? "rtl" : "ltr"}
                                   >
                                     {lang === "ckb"
@@ -405,14 +352,14 @@ export default function HomePage() {
                                   </p>
                                   <div className="flex items-center justify-between gap-2">
                                     <h5
-                                      className={`flex-1 min-w-0 text-sm sm:text-base font-semibold tracking-wide text-gray-900 dark:text-slate-50 truncate`}
+                                      className={`flex-1 min-w-0 text-sm sm:text-base font-semibold tracking-wide text-gray-900 truncate`}
                                       dir={lang === "ckb" ? "rtl" : "ltr"}
                                     >
                                       {lang === "ckb"
                                         ? item.titleKurdish || item.title
                                         : item.title}
                                     </h5>
-                                    <span className="rounded-full bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-100 text-xs sm:text-sm font-bold whitespace-nowrap px-0.5 shrink-0">
+                                    <span className="rounded-full bg-amber-50 text-amber-700 text-xs sm:text-sm font-bold whitespace-nowrap px-0.5 shrink-0">
                                       {item.price?.toLocaleString()}{" "}
                                       {currencyLabel}
                                     </span>
@@ -438,13 +385,13 @@ export default function HomePage() {
         ) : loading ? (
           <div className="py-16 space-y-10">
             <div className="max-w-3xl mx-auto space-y-3 animate-pulse">
-              <div className="h-10 w-48 mx-auto rounded-full bg-gray-200 dark:bg-slate-800" />
-              <div className="h-4 w-64 mx-auto rounded-full bg-gray-200 dark:bg-slate-800" />
+              <div className="h-10 w-48 mx-auto rounded-full bg-gray-200" />
+              <div className="h-4 w-64 mx-auto rounded-full bg-gray-200" />
               <div className="flex flex-wrap justify-center gap-3 pt-4">
                 {Array.from({ length: 4 }).map((_, i) => (
                   <span
                     key={i}
-                    className="h-8 w-20 rounded-full bg-gray-200 dark:bg-slate-800"
+                    className="h-8 w-20 rounded-full bg-gray-200"
                   />
                 ))}
               </div>
@@ -454,15 +401,15 @@ export default function HomePage() {
               {Array.from({ length: 8 }).map((_, idx) => (
                 <div
                   key={idx}
-                  className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden animate-pulse"
+                  className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden animate-pulse"
                 >
-                  <div className="h-32 sm:h-40 md:h-44 bg-linear-to-r from-gray-200 via-gray-100 to-gray-200 dark:from-slate-800 dark:via-slate-700 dark:to-slate-800" />
+                  <div className="h-32 sm:h-40 md:h-44 bg-linear-to-r from-gray-200 via-gray-100 to-gray-200" />
                   <div className="p-4 sm:p-5 space-y-3">
-                    <div className="h-3 w-3/4 rounded-full bg-gray-200 dark:bg-slate-800" />
-                    <div className="h-3 w-1/2 rounded-full bg-gray-200 dark:bg-slate-800" />
+                    <div className="h-3 w-3/4 rounded-full bg-gray-200" />
+                    <div className="h-3 w-1/2 rounded-full bg-gray-200" />
                     <div className="flex items-center justify-between pt-2">
-                      <div className="h-6 w-16 rounded-full bg-gray-200 dark:bg-slate-800" />
-                      <div className="h-6 w-12 rounded-full bg-gray-200 dark:bg-slate-800" />
+                      <div className="h-6 w-16 rounded-full bg-gray-200" />
+                      <div className="h-6 w-12 rounded-full bg-gray-200" />
                     </div>
                   </div>
                 </div>
@@ -502,7 +449,7 @@ export default function HomePage() {
               </DialogClose>
 
               {/* Image */}
-              <div className="w-full h-[45vh] sm:h-[55vh] overflow-hidden bg-gray-50 dark:bg-slate-800 flex items-center justify-center">
+              <div className="w-full h-[45vh] sm:h-[55vh] overflow-hidden bg-gray-50 flex items-center justify-center">
                 <img
                   src={selectedItem.imageUrl}
                   alt={selectedItem.title}
@@ -514,7 +461,7 @@ export default function HomePage() {
               <div className="px-6 py-4 max-h-[40vh] overflow-y-auto">
                 <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-3 mb-3">
                   <h2
-                    className="text-lg font-semibold text-gray-900 dark:text-slate-50 leading-tight wrap-break-word"
+                    className="text-lg font-semibold text-gray-900 leading-tight wrap-break-word"
                     dir={lang === "ckb" ? "rtl" : "ltr"}
                   >
                     {lang === "ckb"
@@ -527,7 +474,7 @@ export default function HomePage() {
                 </div>
 
                 <p
-                  className="text-gray-600 dark:text-slate-300 text-sm mb-4"
+                  className="text-gray-600 text-sm mb-4"
                   dir={lang === "ckb" ? "rtl" : "ltr"}
                 >
                   {lang === "ckb"
@@ -537,7 +484,7 @@ export default function HomePage() {
                 </p>
                 <button
                   onClick={() => setSelectedItem(null)}
-                  className="w-full py-2.5 px-4 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-lg transition"
+                  className="w-full py-2.5 px-4 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-lg transition"
                 >
                   {t("common.close")}
                 </button>
@@ -557,7 +504,7 @@ export default function HomePage() {
             <X size={18} />
           </DialogClose>
 
-          <div className="bg-linear-to-br from-[#6F4E37] to-[#3C2A21] dark:from-[#3C2A21] dark:to-[#1B1212]">
+          <div className="bg-linear-to-br from-[#6F4E37] to-[#3C2A21]">
             {/* Header */}
             <div className="px-4 py-3 text-center text-white">
               <div className="flex justify-center mb-2">
@@ -580,11 +527,11 @@ export default function HomePage() {
               </h2>
             </div>
             {/* Cards Container */}
-            <div className="bg-white dark:bg-slate-800 rounded-t-3xl p-3 space-y-2">
+            <div className="bg-white rounded-t-3xl p-3 space-y-2">
               {/* Phone Numbers Card */}
 
               {/* Social Media Card */}
-              <div className="bg-linear-to-br from-pink-50 to-pink-100 dark:from-pink-900/30 dark:to-pink-800/30 rounded-lg p-1.5 border border-pink-200 dark:border-pink-600">
+              <div className="bg-linear-to-br from-pink-50 to-pink-100 rounded-lg p-1.5 border border-pink-200">
                 <div className="flex items-center gap-1.5 mb-1.5">
                   <div className="rounded-full p-1.5">
                     <Image
@@ -595,7 +542,7 @@ export default function HomePage() {
                       className="rounded-full"
                     />
                   </div>
-                  <p className="text-[9px] font-bold text-pink-900 dark:text-pink-100 uppercase tracking-wide">
+                  <p className="text-[9px] font-bold text-pink-900 uppercase tracking-wide">
                     {lang === "en" ? "Social Media" : "سۆشیال میدیا"}
                   </p>
                 </div>
@@ -666,13 +613,13 @@ export default function HomePage() {
                   </a>
                 </div>
               </div>
-              <div className="bg-linear-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 rounded-xl p-3 border-2 border-blue-200 dark:border-blue-600">
+              <div className="bg-linear-to-br from-blue-50 to-blue-100 rounded-xl p-3 border-2 border-blue-200">
                 <div className="flex items-center gap-2 mb-2">
                   <div className="bg-blue-500 rounded-full p-1.5">
                     <Phone size={16} className="text-white" />
                   </div>
 
-                  <p className="text-xs font-bold text-blue-900 dark:text-blue-100 uppercase tracking-wide">
+                  <p className="text-xs font-bold text-blue-900 uppercase tracking-wide">
                     {lang === "en" ? "Phone Numbers" : "ژمارە تەلەفۆن"}
                   </p>
                 </div>
@@ -683,7 +630,7 @@ export default function HomePage() {
                     onClick={() =>
                       (window.location.href = `tel:${t("contact.phone1")}`)
                     }
-                    className="text-sm font-bold text-blue-900 dark:text-blue-100 hover:text-blue-600 dark:hover:text-blue-300 transition break-all text-left hover:underline"
+                    className="text-sm font-bold text-blue-900 hover:text-blue-600 transition break-all text-left hover:underline"
                   >
                     {t("contact.phone1")}
                   </button>
@@ -691,34 +638,34 @@ export default function HomePage() {
               </div>
 
               {/* Hours Card */}
-              <div className="bg-linear-to-br from-amber-50 to-amber-100 dark:from-amber-900/30 dark:to-amber-800/30 rounded-xl p-3 border-2 border-amber-200 dark:border-amber-600">
+              <div className="bg-linear-to-br from-amber-50 to-amber-100 rounded-xl p-3 border-2 border-amber-200">
                 <div className="flex items-center gap-2 mb-2">
                   <div className="bg-amber-500 rounded-full p-1.5">
                     <Clock size={16} className="text-white" />
                   </div>
-                  <p className="text-xs font-bold text-amber-900 dark:text-amber-100 uppercase tracking-wide">
+                  <p className="text-xs font-bold text-amber-900 uppercase tracking-wide">
                     {lang === "en" ? "Opening Hours" : " کراوەیە "}
                   </p>
                 </div>
-                <p className="text-sm font-bold text-amber-900 dark:text-amber-100">
+                <p className="text-sm font-bold text-amber-900">
                   {t("contact.hours")}
                 </p>
-                <p className="text-xs text-amber-700 dark:text-amber-200 mt-0.5">
+                <p className="text-xs text-amber-700 mt-0.5">
                   {t("contact.daily")}
                 </p>
               </div>
 
               {/* Location Card */}
-              <div className="bg-linear-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 rounded-xl p-3 border-2 border-purple-200 dark:border-purple-600">
+              <div className="bg-linear-to-br from-purple-50 to-purple-100 rounded-xl p-3 border-2 border-purple-200">
                 <div className="flex items-center gap-2 mb-2">
                   <div className="bg-purple-500 rounded-full p-1.5">
                     <MapPin size={16} className="text-white" />
                   </div>
-                  <p className="text-xs font-bold text-purple-900 dark:text-purple-100 uppercase tracking-wide">
+                  <p className="text-xs font-bold text-purple-900 uppercase tracking-wide">
                     {lang === "en" ? "Location" : "ناونیشان"}
                   </p>
                 </div>
-                <p className="text-xs text-purple-900 dark:text-purple-100 font-semibold leading-snug">
+                <p className="text-xs text-purple-900 font-semibold leading-snug">
                   {t("contact.location")}
                 </p>
               </div>
@@ -726,7 +673,7 @@ export default function HomePage() {
               {/* Close Button */}
               <button
                 onClick={() => setShowAbout(false)}
-                className="w-full py-2 bg-linear-to-r from-gray-400 to-gray-500 dark:from-gray-600 dark:to-gray-700 hover:from-gray-500 hover:to-gray-600 dark:hover:from-gray-700 dark:hover:to-gray-800 text-white font-bold rounded-lg transition text-xs"
+                className="w-full py-2 bg-linear-to-r from-gray-400 to-gray-500 hover:from-gray-500 hover:to-gray-600 text-white font-bold rounded-lg transition text-xs"
               >
                 {lang === "en" ? "Close" : "داخستن"}
               </button>
@@ -736,16 +683,16 @@ export default function HomePage() {
       </Dialog>
 
       {/* Footer */}
-      <footer className="text-xs   pt-12 pb-6 w-full dark:bg-slate-900/50">
+      <footer className="text-xs   pt-12 pb-6 w-full">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center">
-          <p className="text-gray-500 dark:text-slate-400 text-sm font-light tracking-wide">
+          <p className="text-gray-500 text-sm font-light tracking-wide">
             Designed and Developed by
           </p>
           <a
             href="https://www.facebook.com/mahamad.khdir.104"
             target="_blank"
             rel="noreferrer"
-            className="font-semibold text-gray-800 dark:text-slate-100 underline flex items-center hover:text-amber-700 dark:hover:text-amber-300 transition"
+            className="font-semibold text-gray-800 underline flex items-center hover:text-amber-700 transition"
           >
             <Facebook size={17} />
             Hama Sha

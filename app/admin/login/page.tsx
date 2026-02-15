@@ -41,10 +41,10 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-white to-gray-50 dark:from-slate-950 dark:to-slate-900 text-slate-900 dark:text-slate-100 flex items-center justify-center px-4 py-10">
+    <div className="min-h-screen bg-linear-to-b from-white to-gray-50 text-slate-900 flex items-center justify-center px-4 py-10">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-10 -left-16 w-64 h-64 bg-amber-200/50 dark:bg-amber-900/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-72 h-72 bg-amber-100 dark:bg-amber-900/20 rounded-full blur-3xl" />
+        <div className="absolute -top-10 -left-16 w-64 h-64 bg-amber-200/50 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-amber-100 rounded-full blur-3xl" />
       </div>
 
       <div className="w-full max-w-md relative z-10">

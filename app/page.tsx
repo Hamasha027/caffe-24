@@ -152,7 +152,24 @@ export default function HomePage() {
       groups[category].push(item);
     });
 
-    return groups;
+    // Sort categories with freshdrinks first
+    const sorted: Record<string, MenuItem[]> = {};
+    const categoryOrder = ["freshdrinks", "icecoffee", "coffee", "mexican", "milkshake", "hotdrinks", "syrup", "sweets"];
+    
+    categoryOrder.forEach((cat) => {
+      if (groups[cat]) {
+        sorted[cat] = groups[cat];
+      }
+    });
+    
+    // Add any remaining categories not in the order
+    Object.keys(groups).forEach((cat) => {
+      if (!sorted[cat]) {
+        sorted[cat] = groups[cat];
+      }
+    });
+
+    return sorted;
   }, [filteredItems]);
 
   // Get category name by ID

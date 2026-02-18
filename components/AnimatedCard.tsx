@@ -93,19 +93,10 @@ export function AnimatedCard({
         transition={{ duration: 0.3 }}
       />
 
-      {/* Floating animation */}
-      <motion.div
-        animate={isInView ? { y: [0, -8, 0] } : {}}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: index * 0.1,
-        }}
-        className="w-full h-full"
-      >
+      {/* Content without floating animation */}
+      <div className="w-full h-full">
         {children}
-      </motion.div>
+      </div>
     </motion.div>
   );
 }

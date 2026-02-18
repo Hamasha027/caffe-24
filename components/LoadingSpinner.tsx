@@ -64,7 +64,7 @@ export default function LoadingSpinner() {
 
         {/* Loading Text */}
         <div className="text-center">
-          <p className="text-lg font-bold tracking-widest mb-3">
+          <p className="text-md font-bold tracking-widest mb-3">
             <span className="bg-linear-to-r from-amber-600 via-orange-500 to-amber-700 bg-clip-text text-transparent" style={{ 
               animation: 'shimmer 2s infinite',
               backgroundSize: '200% 100%'

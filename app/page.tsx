@@ -73,7 +73,6 @@ export default function HomePage() {
   const currencyLabel = lang === "ckb" ? "دینار" : "IQD";
 
   const openItem = (item: MenuItem) => {
-    cardsTopRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     setSelectedItem(item);
   };
 

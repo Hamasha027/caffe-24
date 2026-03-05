@@ -12,16 +12,20 @@ interface AnimatedCardProps {
 export function AnimatedCard({
   children,
   index,
-  staggerDelay = 0.05,
+  staggerDelay = 0.06,
 }: AnimatedCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
+        // Trigger animation whenever card enters viewport (scrolling up or down)
         if (entry.isIntersecting) {
           setIsInView(true);
+        } else {
+          setIsInView(false);
         }
       },
       {
@@ -41,62 +45,60 @@ export function AnimatedCard({
     };
   }, []);
 
-  const floatingVariants = {
-    initial: { opacity: 0, y: 60, scale: 0.8 },
-    animate: {
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.88,
+      filter: "blur(8px)",
+    },
+    visible: {
       opacity: 1,
       y: 0,
       scale: 1,
+      filter: "blur(0px)",
       transition: {
-        type: "spring" as const,
-        stiffness: 90,
-        damping: 18,
-        mass: 0.9,
+        duration: 0.7,
         delay: index * staggerDelay,
+        type: "spring",
+        stiffness: 90,
+        damping: 20,
       },
     },
+  };
+
+  const hoverVariants = {
+    rest: {
+      y: 0,
+      boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)",
+    },
     hover: {
-      y: -25,
-      rotateX: 5,
-      rotateY: -5,
-      boxShadow: "0 30px 60px rgba(217, 119, 6, 0.35)",
-      transition: {
-        type: "spring" as const,
-        stiffness: 150,
-        damping: 12,
-      },
+      y: -15,
+      boxShadow: "0 35px 70px rgba(217, 119, 6, 0.35)",
+      scale: 1.03,
     },
   };
 
   return (
     <motion.div
       ref={ref}
-      variants={floatingVariants}
-      initial="initial"
-      animate={isInView ? "animate" : "initial"}
-      whileHover="hover"
-      style={{
-        perspective: 1200,
-        transformStyle: "preserve-3d",
-      }}
-      className="h-full relative group"
+      variants={cardVariants}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      className="h-full"
     >
-      {/* Gradient shine effect */}
       <motion.div
-        className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none"
-        style={{
-          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-          backdropFilter: "blur(1px)",
-        }}
-        initial={{ opacity: 0 }}
-        whileHover={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-      />
-
-      {/* Content without floating animation */}
-      <div className="w-full h-full">
+        className="h-full rounded-xl overflow-hidden bg-white cursor-pointer"
+        variants={hoverVariants}
+        initial="rest"
+        animate={isHovering ? "hover" : "rest"}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+        transition={{ duration: 0.45, ease: "easeOut", type: "spring", stiffness: 150, damping: 18 }}
+      >
         {children}
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
+

@@ -60,7 +60,7 @@ export function AnimatedCard({
       transition: {
         duration: 0.7,
         delay: index * staggerDelay,
-        type: "spring",
+        type: "spring" as const,
         stiffness: 90,
         damping: 20,
       },
